@@ -14,7 +14,7 @@ export default function MenuTab({ icon, iconCustomStyle }: MenuTabInterface) {
 
   return (
     <div
-      className={`relative mb-16  flex items-center justify-center ${activeStyles}`}
+      className={`relative mb-16  flex cursor-pointer items-center justify-center ${activeStyles}`}
     >
       <span
         className={`material-icons${iconCustomStyle ? iconCustomStyle : ''}`}
