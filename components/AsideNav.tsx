@@ -1,11 +1,18 @@
 import MenuTab from './MenuTab';
+import Icon from './Icon';
 
 export default function AsideNav() {
   return (
     <nav>
-      <MenuTab icon="list" />
-      <MenuTab icon="replay" />
-      <MenuTab icon="assessment" iconCustomStyle="-outlined" />
+      <MenuTab>
+        <Icon icon="list" />
+      </MenuTab>
+      <MenuTab>
+        <Icon icon="replay" />
+      </MenuTab>
+      <MenuTab>
+        <Icon icon="assessment" />
+      </MenuTab>
     </nav>
   );
 }

@@ -3,25 +3,22 @@ interface ButtonInterface {
   customClasses?: string;
   type?: any;
   customIconClasses?: string;
-  buttonType: any;
+  buttonType?: any;
   icon?: string;
+  children: React.ReactNode;
 }
 
 export default function Button({
   buttonType,
-  icon,
   customClasses,
-  text,
-  customIconClasses,
+  children,
 }: ButtonInterface) {
   return (
-    <button type={buttonType} className={customClasses}>
-      {text}
-      {icon ? (
-        <span className={`material-icons-outlined ${customIconClasses}`}>
-          {icon}
-        </span>
-      ) : null}
+    <button
+      type={!buttonType ? 'button' : buttonType}
+      className={customClasses}
+    >
+      {children}
     </button>
   );
 }

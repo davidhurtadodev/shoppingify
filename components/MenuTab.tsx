@@ -1,11 +1,10 @@
 import { useState } from 'react';
 
 interface MenuTabInterface {
-  icon: string;
-  iconCustomStyle?: string;
+  children: React.ReactNode;
 }
 
-export default function MenuTab({ icon, iconCustomStyle }: MenuTabInterface) {
+export default function MenuTab({ children }: MenuTabInterface) {
   const [isActive, setIsActive] = useState(false);
 
   const activeStyles = isActive
@@ -16,11 +15,7 @@ export default function MenuTab({ icon, iconCustomStyle }: MenuTabInterface) {
     <div
       className={`relative mb-16  flex cursor-pointer items-center justify-center ${activeStyles}`}
     >
-      <span
-        className={`material-icons${iconCustomStyle ? iconCustomStyle : ''}`}
-      >
-        {icon}
-      </span>
+      {children}
     </div>
   );
 }
