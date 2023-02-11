@@ -1,6 +1,6 @@
 import CategoryGrid from './CategoryGrid';
 
-export default function MainContent() {
+export default function MainItems() {
   return (
     <>
       <h1 className="mb-5 hidden text-[26px] font-medium">
