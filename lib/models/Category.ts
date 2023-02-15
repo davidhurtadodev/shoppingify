@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
-const CategorieSchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 3,
+  },
   items: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -9,7 +14,7 @@ const CategorieSchema = new mongoose.Schema({
   ],
 });
 
-CategorieSchema.set('toJSON', {
+CategorySchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -18,4 +23,4 @@ CategorieSchema.set('toJSON', {
 });
 
 module.exports =
-  mongoose.models.Category || mongoose.model('Category', CategorieSchema);
+  mongoose.models.Category || mongoose.model('Category', CategorySchema);
