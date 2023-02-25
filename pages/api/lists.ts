@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import connectMongo from '../../lib/mongodb';
-const Category = require('../../lib/models/Category');
+import connectMongo from '@/lib/mongodb';
+const List = require('@/lib/models/List');
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,37 +13,38 @@ export default async function handler(
   if (req.method === 'POST') {
     try {
       const { body } = req;
-      if (!body.name) {
+      if (!body.name || !body.items || !body.date) {
         return res.status(400).json({
           error: 'content missing',
         });
       }
 
-      const isRepeated = await Category.findOne({
+      const repeatedList = List.findOne({
         name: body.name.toLowerCase(),
       });
 
-      console.log(isRepeated);
-
-      if (isRepeated) {
+      if (repeatedList) {
         return res.status(400).json({
-          error: 'repeated category',
+          error: 'repeated list',
         });
       }
 
-      const category = new Category({
-        name: body.name.toLowerCase(),
+      const list = new List({
+        name: body.listName.toLowerCase(),
+        status: 'pending',
+        date: body.date,
+        items: body.items,
       });
 
-      const savedCategory = await category.save();
-      return res.status(201).json(savedCategory);
+      const savedList = await list.save();
+      return res.status(201).json(savedList);
     } catch (error: any) {
       console.error(error);
       return res.json(error);
     }
   } else if (req.method === 'GET') {
     try {
-      const categories = await Category.find({});
+      const categories = await List.find({});
       return res.status(200).json(categories);
     } catch (error: any) {
       console.error(error);

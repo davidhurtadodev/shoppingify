@@ -6,6 +6,9 @@ if (!uri) {
   throw new Error('Add Mongo URI to .env.local');
 }
 
-const connectMongo = async () => mongoose.connect(uri!);
+const connectMongo = async () => {
+  console.log(uri);
+  return await mongoose.connect(uri!);
+};
 
 export default connectMongo;
