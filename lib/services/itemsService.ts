@@ -4,9 +4,9 @@ const baseUrl = 'http://localhost:3003/api/v1/items';
 
 const getAll = async () => {
   try {
-    const res = await axios.get(baseUrl);
-    console.log(res);
-    return res;
+    const { data } = await axios.get(baseUrl);
+
+    return data;
   } catch (err) {
     console.error(err);
   }

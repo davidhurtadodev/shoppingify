@@ -12,7 +12,7 @@ export default function Input({
   placeholder,
 }: InputProps) {
   return (
-    <div className="mb-4 w-full">
+    <div className={`${type !== 'checkbox' ? 'mb-4' : ''} w-full`}>
       {labelText ? (
         <label className="mb-1 block text-sm font-normal">{labelText}</label>
       ) : null}

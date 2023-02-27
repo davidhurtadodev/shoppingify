@@ -1,10 +1,12 @@
-interface Item {
+import { CategoryFetched } from './Categories';
+
+export interface Item {
   name: string;
   note?: string;
   imageUrl?: string;
-  category: string;
+  category: string | CategoryFetched;
 }
 
-interface ItemFetched extends Item {
+export interface ItemFetched extends Item {
   id: string;
 }

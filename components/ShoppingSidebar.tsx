@@ -18,7 +18,7 @@ export default function ShoppingSidebar() {
             placeholder="Enter a name"
             customClasses=" border-0  grow p-5 focus:outline-0x"
           />
-          <Button customClasses="text-white text-base font-bold bg-primary-accent border-2 border-primary-accent px-6 py-5 rounded-xl ">
+          <Button customClasses="text-white text-base font-bold bg-primary-accent border-2 border-primary-accent px-6 py-5  ">
             Save
           </Button>
         </div>

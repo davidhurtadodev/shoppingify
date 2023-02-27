@@ -1,11 +1,14 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import itemsReducer from './itemsSlice';
-import { createWrapper } from 'next-redux-wrapper';
+import categoryReducer from './categoriesSlice';
+import UIReducer from './UISlice';
 
 const makeStore = () =>
   configureStore({
     reducer: {
       items: itemsReducer,
+      categories: categoryReducer,
+      UI: UIReducer,
     },
     devTools: true,
   });
@@ -21,5 +24,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action
 >;
-
+export type RootState = ReturnType<typeof store.getState>;
 export default store;
