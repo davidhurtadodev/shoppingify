@@ -4,22 +4,12 @@ import AddItemForm from './AddItemForm';
 import ItemInfo from './ItemInfo';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import ShoppingList from './ShoppingList';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
-  // const isVisibleAddItem = useSelector(
-  //   (state: RootState) => state.UI.addItemSection.isVisible
-  // );
-  // const isVisibleItemInfo = useSelector(
-  //   (state: RootState) => state.UI.itemInfoSection.isVisible
-  // );
-  // const isVisibleItemShoppingList = useSelector(
-  //   (state: RootState) => state.UI.itemInfoSection.isVisible
-  // );
   const sidebarSection = useSelector(
     (state: RootState) => state.UI.sidebar.value
   );

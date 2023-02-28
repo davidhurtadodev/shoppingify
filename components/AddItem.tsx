@@ -6,8 +6,8 @@ import { changeVisibility } from '@/redux/UISlice';
 
 export default function AddItem() {
   const dispatch = useDispatch();
-  const test = () => {
-    dispatch(changeVisibility(null));
+  const addItemBtnHandler = () => {
+    dispatch(changeVisibility('add-item-form'));
   };
 
   return (
@@ -18,7 +18,7 @@ export default function AddItem() {
       <div className="mr-0 ml-auto py-4">
         <h3 className="mb-3 text-base font-bold leading-5 text-white">{`Didn't find what you need?`}</h3>
         <Button
-          onClickFunc={test}
+          onClickFunc={addItemBtnHandler}
           buttonType="button"
           customClasses="shadow-[0_2px_12px_rgba(0,0,0,0.05)]  py-2  px-2 w-[110px] rounded-xl bg-white text-center"
         >
