@@ -32,8 +32,8 @@ export const deleteItemsAsync = createAsyncThunk(
 export const createItemAsync = createAsyncThunk(
   'items/createAsync',
   async (content: Item) => {
-    const book = await bookService.create(content);
-    return book;
+    const item = await itemsService.create(content);
+    return item;
   }
 );
 

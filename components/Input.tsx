@@ -3,6 +3,7 @@ interface InputProps {
   type?: string;
   customClasses?: string;
   placeholder?: string;
+  onChangeFunc: (e: React.FormEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({
@@ -10,6 +11,7 @@ export default function Input({
   type,
   customClasses,
   placeholder,
+  onChangeFunc,
 }: InputProps) {
   return (
     <div className={`${type !== 'checkbox' ? 'mb-4' : ''} w-full`}>
@@ -26,6 +28,7 @@ export default function Input({
           type={!type ? 'text' : type}
           className={`w-full rounded-xl border-2 border-unselected px-4 py-5 text-sm font-medium placeholder:text-unselected ${customClasses}`}
           placeholder={placeholder ? placeholder : ''}
+          onChange={(e) => onChangeFunc(e)}
         />
       )}
     </div>

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { CategoryFetched } from '@/lib/types/Categories';
 import categoriesService from '@/lib/services/categoriesService';
+import { createItemAsync } from './itemsSlice';
 
 // Type of state
 export interface categoriesState {
@@ -43,16 +44,28 @@ export const categoriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // .addCase(createItemAsync.fulfilled, (state, action) => {
-      //   state.status = 'idle';
-      //   state.items.push(action.payload);
-      // })
-      // .addCase(createItemAsync.rejected, (state, action) => {
-      //   state.status = 'failed';
-      // })
-      // .addCase(createItemAsync.pending, (state, action) => {
-      //   state.status = 'loading';
-      // })
+      .addCase(createItemAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        const category: CategoryFetched = action.payload.category;
+        // if category doesnt exist
+        const categoryIndex = state.elements.findIndex(
+          (element) => element.name === category.name
+        );
+        if (categoryIndex < 0) {
+          console.log(category);
+          state.elements.push(category);
+        }
+        if (categoryIndex >= 0) {
+          state.elements[categoryIndex].items.push(action.payload);
+        }
+        // state.items.push(action.payload);
+      })
+      .addCase(createItemAsync.rejected, (state, action) => {
+        state.status = 'failed';
+      })
+      .addCase(createItemAsync.pending, (state, action) => {
+        state.status = 'loading';
+      })
       // .addCase(deleteItemsAsync.pending, (state) => {
       //   state.status = 'loading';
       // })

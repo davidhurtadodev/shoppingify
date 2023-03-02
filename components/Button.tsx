@@ -1,7 +1,6 @@
 interface ButtonInterface {
   text?: string;
   customClasses?: string;
-  type?: any;
   customIconClasses?: string;
   buttonType?: any;
   icon?: string;
