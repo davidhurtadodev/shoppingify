@@ -1,3 +1,5 @@
+import { overrideTailwindClasses } from 'tailwind-override';
+
 interface InputProps {
   labelText?: string;
   type?: string;
@@ -26,7 +28,9 @@ export default function Input({
       ) : (
         <input
           type={!type ? 'text' : type}
-          className={`w-full rounded-xl border-2 border-unselected px-4 py-5 text-sm font-medium placeholder:text-unselected ${customClasses}`}
+          className={overrideTailwindClasses(
+            `w-full rounded-xl border-2 border-unselected px-4 py-5 text-sm font-medium placeholder:text-unselected focus:border-primary-accent focus-visible:border-primary-accent focus-visible:outline-primary-accent ${customClasses}`
+          )}
           placeholder={placeholder ? placeholder : ''}
           onChange={(e) => onChangeFunc(e)}
         />

@@ -5,7 +5,7 @@ import { createItemAsync } from './itemsSlice';
 
 // Type of state
 export interface categoriesState {
-  elements: [] | CategoryFetched[];
+  elements: CategoryFetched[];
   status: 'idle' | 'loading' | 'failed';
 }
 
@@ -23,20 +23,6 @@ export const fetchCategoriesAsync = createAsyncThunk(
     return categories;
   }
 );
-// export const deleteItemsAsync = createAsyncThunk(
-//   'items/deleteAsync',
-//   async (id: string) => {
-//     await itemsService.deleteItem(id);
-//     return id;
-//   }
-// );
-// export const createItemAsync = createAsyncThunk(
-//   'items/createAsync',
-//   async (content: Item) => {
-//     const book = await bookService.create(content);
-//     return book;
-//   }
-// );
 
 export const categoriesSlice = createSlice({
   name: 'categories',
@@ -46,6 +32,7 @@ export const categoriesSlice = createSlice({
     builder
       .addCase(createItemAsync.fulfilled, (state, action) => {
         state.status = 'idle';
+
         const category: CategoryFetched = action.payload.category;
         // if category doesnt exist
         const categoryIndex = state.elements.findIndex(
@@ -58,7 +45,6 @@ export const categoriesSlice = createSlice({
         if (categoryIndex >= 0) {
           state.elements[categoryIndex].items.push(action.payload);
         }
-        // state.items.push(action.payload);
       })
       .addCase(createItemAsync.rejected, (state, action) => {
         state.status = 'failed';
@@ -66,19 +52,7 @@ export const categoriesSlice = createSlice({
       .addCase(createItemAsync.pending, (state, action) => {
         state.status = 'loading';
       })
-      // .addCase(deleteItemsAsync.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(deleteItemsAsync.fulfilled, (state, action) => {
-      //   const idDeleted: string = action.payload;
-      //   const filterDeleted = state.items.filter(
-      //     (item: ItemFetched) => item.id !== idDeleted
-      //   );
-      //   state.items = filterDeleted;
-      // })
-      // .addCase(deleteItemsAsync.rejected, (state, action) => {
-      //   state.status = 'failed';
-      // })
+
       .addCase(fetchCategoriesAsync.pending, (state) => {
         state.status = 'loading';
       })

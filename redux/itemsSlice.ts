@@ -4,7 +4,7 @@ import itemsService from '@/lib/services/itemsService';
 
 // Type of state
 export interface itemsState {
-  items: [] | ItemFetched[];
+  items: ItemFetched[];
   status: 'idle' | 'loading' | 'failed';
 }
 
