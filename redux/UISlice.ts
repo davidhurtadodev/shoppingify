@@ -4,6 +4,9 @@ export interface UIState {
   sidebar: {
     value: string;
   };
+  selectedItem: {
+    id: string | null;
+  };
   // addItemSection: {
   //   isVisible: boolean;
   // };
@@ -19,6 +22,9 @@ const initialState: UIState = {
   sidebar: {
     value: 'shopping-list',
   },
+  selectedItem: {
+    id: null,
+  },
   // itemInfoSection: {
   //   isVisible: false,
   // },
@@ -32,16 +38,13 @@ export const UISlice = createSlice({
   initialState: initialState,
   reducers: {
     changeVisibility: (state, action) => {
-      //   for (const section in state) {
-      //     state[`${section}`];
-      //   }
-      //   state[section as keyof UIState].isVisible =
-      //     !state[section as keyof UIState].isVisible;
-      // },
       state.sidebar.value = action.payload;
+    },
+    changeSelectedItem: (state, action) => {
+      state.selectedItem.id = action.payload;
     },
   },
 });
-export const { changeVisibility } = UISlice.actions;
+export const { changeVisibility, changeSelectedItem } = UISlice.actions;
 
 export default UISlice.reducer;

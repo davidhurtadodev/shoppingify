@@ -1,11 +1,20 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeVisibility } from '@/redux/UISlice';
 import Button from './Button';
 import Icon from './Icon';
+import helper from '@/lib/helper';
 import Image from 'next/image';
+import { ItemFetched } from '@/lib/types/Items';
+import { RootState } from '@/redux/store';
 
 export default function ItemInfo() {
   const dispatch = useDispatch();
+  const selectedItemId = useSelector(
+    (state: RootState) => state.UI.selectedItem.id
+  );
+  const items = useSelector((state: RootState) => state.items.items);
+
+  const selectedItem = items.find((item) => item.id === selectedItemId);
   const backItemInfoBtnHandler = () => {
     dispatch(changeVisibility('shopping-list'));
   };
@@ -24,22 +33,23 @@ export default function ItemInfo() {
 
       <div className="mb-8">
         <label className="mb-3 block text-sm text-gray">name</label>
-        <h3 className="text-2xl font-medium">Avocado</h3>
+        <h3 className="text-2xl font-medium">
+          {helper.capitalizeString(selectedItem!.name)}
+        </h3>
       </div>
       <div className="mb-8">
-        <label className="mb-3 block text-sm text-gray">name</label>
-        <p className="text-lg font-medium">Fruit and vegetables</p>
-      </div>
-      <div className="mb-8">
-        <label className="mb-3 block text-sm text-gray">note</label>
+        <label className="mb-3 block text-sm text-gray">category</label>
         <p className="text-lg font-medium">
-          Nutrient-dense foods are those that provide substantial amounts of
-          vitamins, minerals and other nutrients with relatively few calories.
-          One-third of a medium avocado (50 g) has 80 calories and contributes
-          nearly 20 vitamins and minerals, making it a great nutrient-dense food
-          choice.
+          {helper.capitalizeString(selectedItem!.category.name)}
         </p>
       </div>
+      {selectedItem!.note ? (
+        <div className="mb-8">
+          <label className="mb-3 block text-sm text-gray">note</label>
+          <p className="text-lg font-medium">{selectedItem!.note}</p>
+        </div>
+      ) : null}
+
       <div className=" mb-0 mt-auto flex justify-center">
         <Button customClasses="font-bold text-base px-6 py-5 bg-transparent border-0">
           delete

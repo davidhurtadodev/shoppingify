@@ -2,12 +2,23 @@ import { useDispatch } from 'react-redux';
 import Icon from './Icon';
 import Button from './Button';
 import helper from '@/lib/helper';
-import { changeVisibility } from '@/redux/UISlice';
+import { changeVisibility, changeSelectedItem } from '@/redux/UISlice';
+import { ItemFetched } from '@/lib/types/Items';
 
-export default function CategorySection({ categoryName, items }) {
+interface CategorySectionProps {
+  items: ItemFetched[];
+  categoryName: string;
+}
+
+export default function CategorySection({
+  categoryName,
+  items,
+}: CategorySectionProps) {
   const dispatch = useDispatch();
-  const itemInfoBtnHandler = () => {
+  const itemInfoBtnHandler = (id: string) => {
+    console.log(id);
     dispatch(changeVisibility('item-info'));
+    dispatch(changeSelectedItem(id));
   };
   return (
     <div>
@@ -19,7 +30,7 @@ export default function CategorySection({ categoryName, items }) {
           return (
             <div className="h-[70px]" key={item.id}>
               <Button
-                onClickFunc={itemInfoBtnHandler}
+                onClickFunc={() => itemInfoBtnHandler(item.id)}
                 customClasses="text-left shadow-[0_2px_12px_rgba(0,0,0,0.05)] flex items-center py-3  px-4 w-[140px] rounded-xl "
               >
                 {helper.capitalizeString(item.name)}

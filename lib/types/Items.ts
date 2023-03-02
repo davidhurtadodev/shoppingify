@@ -4,7 +4,7 @@ export interface Item {
   name: string;
   note?: string;
   imageUrl?: string;
-  category: string | CategoryFetched;
+  category: CategoryFetched;
 }
 
 export interface ItemFetched extends Item {
