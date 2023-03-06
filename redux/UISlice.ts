@@ -7,6 +7,9 @@ export interface UIState {
   selectedItem: {
     id: string | null;
   };
+  mainSection: {
+    value: boolean;
+  };
   // addItemSection: {
   //   isVisible: boolean;
   // };
@@ -24,6 +27,9 @@ const initialState: UIState = {
   },
   selectedItem: {
     id: null,
+  },
+  mainSection: {
+    value: true,
   },
   // itemInfoSection: {
   //   isVisible: false,

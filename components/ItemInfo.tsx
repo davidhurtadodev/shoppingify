@@ -3,9 +3,8 @@ import { changeVisibility } from '@/redux/UISlice';
 import Button from './Button';
 import Icon from './Icon';
 import helper from '@/lib/helper';
-import Image from 'next/image';
-import { ItemFetched } from '@/lib/types/Items';
 import { RootState } from '@/redux/store';
+import { addItem } from '@/redux/listsSlice';
 
 export default function ItemInfo() {
   const dispatch = useDispatch();
@@ -17,6 +16,10 @@ export default function ItemInfo() {
   const selectedItem = items.find((item) => item.id === selectedItemId);
   const backItemInfoBtnHandler = () => {
     dispatch(changeVisibility('shopping-list'));
+  };
+
+  const addToListHandler = () => {
+    dispatch(addItem(selectedItem));
   };
   return (
     <section className="y flex h-full flex-col bg-white px-11 pb-8 pt-6">
@@ -54,7 +57,10 @@ export default function ItemInfo() {
         <Button customClasses="font-bold text-base px-6 py-5 bg-transparent border-0">
           delete
         </Button>
-        <Button customClasses="bg-primary-accent font-bold text-base px-6 py-5 text-white rounded-xl">
+        <Button
+          onClickFunc={addToListHandler}
+          customClasses="bg-primary-accent font-bold text-base px-6 py-5 text-white rounded-xl"
+        >
           Add to list
         </Button>
       </div>

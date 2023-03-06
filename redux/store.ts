@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import itemsReducer from './itemsSlice';
 import categoryReducer from './categoriesSlice';
 import UIReducer from './UISlice';
+import listReducer from './listsSlice';
 
 const makeStore = () =>
   configureStore({
@@ -9,6 +10,7 @@ const makeStore = () =>
       items: itemsReducer,
       categories: categoryReducer,
       UI: UIReducer,
+      lists: listReducer,
     },
     devTools: true,
   });

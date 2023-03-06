@@ -6,6 +6,7 @@ interface InputProps {
   customClasses?: string;
   placeholder?: string;
   onChangeFunc: (e: React.FormEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
 export default function Input({
@@ -14,6 +15,7 @@ export default function Input({
   customClasses,
   placeholder,
   onChangeFunc,
+  value,
 }: InputProps) {
   return (
     <div className={`${type !== 'checkbox' ? 'mb-4' : ''} w-full`}>
@@ -22,11 +24,13 @@ export default function Input({
       ) : null}
       {type === 'checkbox' ? (
         <input
+          value={value && value}
           type="checkbox"
           className="mr-2 grid h-6 w-6 cursor-pointer appearance-none place-content-center rounded border-2 border-primary-accent text-primary-accent before:h-6 before:w-6 before:scale-0 checked:before:scale-100    checked:before:bg-[url('/assets/icons/done.svg')]"
         />
       ) : (
         <input
+          value={value && value}
           type={!type ? 'text' : type}
           className={overrideTailwindClasses(
             `w-full rounded-xl border-2 border-unselected px-4 py-5 text-sm font-medium placeholder:text-unselected focus:border-primary-accent focus-visible:border-primary-accent focus-visible:outline-primary-accent ${customClasses}`
