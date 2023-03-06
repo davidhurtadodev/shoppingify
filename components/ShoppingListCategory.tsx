@@ -24,7 +24,7 @@ export default function ShoppingListCategory({
         return (
           <ShoppingProductRow
             key={item.item.id}
-            product={item.item.name}
+            product={item.item}
             pieces={item.quantity}
           />
         );

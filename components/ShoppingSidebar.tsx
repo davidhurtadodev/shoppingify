@@ -10,9 +10,9 @@ import { RootState } from '@/redux/store';
 
 export default function ShoppingSidebar() {
   const dispatch = useDispatch();
-  const listToCreateName = useSelector(
-    (state: RootState) => state.lists.listToCreate.name
-  );
+  // const listToCreateName = useSelector(
+  //   (state: RootState) => state.lists.listToCreate.name
+  // );
   const handleListToCreateNameChange = (
     e: React.FormEvent<HTMLInputElement>
   ) => {

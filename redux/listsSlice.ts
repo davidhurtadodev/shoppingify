@@ -75,8 +75,15 @@ export const listsSlice = createSlice({
       const index = state.listToCreate.items.findIndex(
         ({ item }) => item.id === itemId
       );
-      if (state.listToCreate.items[index].quantity > 0)
+      if (state.listToCreate.items[index].quantity > 1)
         state.listToCreate.items[index].quantity -= 1;
+    },
+    deleteItemInList: (state, action) => {
+      const itemId = action.payload;
+      const index = state.listToCreate.items.findIndex(
+        ({ item }) => item.id === itemId
+      );
+      state.listToCreate.items.splice(index);
     },
     toggleCancel: (state) => {
       state.listToCreate.isCancelled = !state.listToCreate.isCancelled;
@@ -130,5 +137,6 @@ export const {
   setName,
   toggleCancel,
   restQuantity,
+  deleteItemInList,
 } = listsSlice.actions;
 export default listsSlice.reducer;

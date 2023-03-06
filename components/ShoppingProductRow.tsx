@@ -2,9 +2,11 @@ import { useState } from 'react';
 import Button from './Button';
 import EditQuantity from './EditQuantity';
 import Input from './Input';
+import helper from '@/lib/helper';
+import { ItemFetched } from '@/lib/types/Items';
 
 interface ShoppingProductRowProps {
-  product: string;
+  product: ItemFetched;
   pieces: number;
 }
 
@@ -15,6 +17,10 @@ export default function ShoppingProductRow({
   const [isEditable, setIsEditable] = useState(false);
   const [isCheckbox, setIsCheckbox] = useState(true);
 
+  const handleClickQuantityButton = () => {
+    setIsEditable(!isEditable);
+  };
+
   return (
     <div className="mb-6 flex items-center">
       {isCheckbox ? (
@@ -23,13 +29,16 @@ export default function ShoppingProductRow({
         </div>
       ) : null}
 
-      <label className="text-sm">{product}</label>
+      <label className="text-sm">{helper.capitalizeString(product.name)}</label>
       {!isEditable ? (
-        <Button customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0">
+        <Button
+          onClickFunc={handleClickQuantityButton}
+          customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
+        >
           {pieces} pcs
         </Button>
       ) : (
-        <EditQuantity>{pieces} pcs</EditQuantity>
+        <EditQuantity item={product}>{pieces} pcs</EditQuantity>
       )}
     </div>
   );

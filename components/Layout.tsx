@@ -22,7 +22,7 @@ export default function Layout({ children }: LayoutProps) {
         <main className="col-span-5 col-start-2 row-start-1  row-end-2 bg-[#FAFAFE] px-3 pt-10 xl:col-start-2 xl:col-end-3">
           {children}
         </main>
-        <aside className="z-50 col-span-5 col-start-2 col-end-7 row-span-1 row-start-1 row-end-2 flex flex-col  xl:col-start-3">
+        <aside className="z-50 col-span-5 col-start-2 col-end-7 row-span-1 row-start-1 row-end-2 flex flex-col  xl:col-start-3 xl:min-w-[380px]">
           {sidebarSection === 'shopping-list' ? <ShoppingSidebar /> : null}
           {sidebarSection === 'item-info' ? <ItemInfo /> : null}
           {sidebarSection === 'add-item-form' ? <AddItemForm /> : null}
