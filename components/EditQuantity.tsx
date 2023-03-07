@@ -2,30 +2,38 @@ import Button from './Button';
 import Icon from './Icon';
 import { ItemFetched } from '@/lib/types/Items';
 import { useSelector, useDispatch } from 'react-redux';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 import {
   addQuantity,
   restQuantity,
   deleteItemInList,
 } from '@/redux/listsSlice';
+import { forwardRef } from 'react';
 
 interface EditQuantityProps {
   children: React.ReactNode;
   item: ItemFetched;
+  // handleClickQuantityButton: any;
 }
+export type Ref = HTMLDivElement;
 
-export default function EditQuantity({ children, item }: EditQuantityProps) {
+const EditQuantity = forwardRef<Ref, EditQuantityProps>((props, ref) => {
   const dispatch = useDispatch();
   const handleAddButton = () => {
-    dispatch(addQuantity(item.id));
+    dispatch(addQuantity(props.item.id));
   };
   const handleRestButton = () => {
-    dispatch(restQuantity(item.id));
+    dispatch(restQuantity(props.item.id));
   };
   const handleDeleteButton = () => {
-    dispatch(deleteItemInList(item.id));
+    dispatch(deleteItemInList(props.item.id));
   };
+
   return (
-    <div className="ml-auto mr-0 flex items-center overflow-hidden rounded-xl bg-white ">
+    <div
+      ref={ref}
+      className="ml-auto mr-0 flex items-center overflow-hidden rounded-xl bg-white "
+    >
       <Button
         onClickFunc={handleDeleteButton}
         customClasses="bg-primary-accent self-stretch rounded-xl mr-3 p-3"
@@ -36,7 +44,7 @@ export default function EditQuantity({ children, item }: EditQuantityProps) {
         <Icon icon="remove" customClasses="mr-2 text-primary-accent" />
       </Button>
       <Button customClasses="border-2 mr-2 my-2 border-primary-accent rounded-3xl bg-white text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0">
-        {children}
+        {props.children}
       </Button>
       <Button
         onClickFunc={handleAddButton}
@@ -47,4 +55,7 @@ export default function EditQuantity({ children, item }: EditQuantityProps) {
       </Button>
     </div>
   );
-}
+});
+
+EditQuantity.displayName = 'EditQuantity';
+export default EditQuantity;

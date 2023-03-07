@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useDetectClickOutside } from 'react-detect-click-outside';
+import useOutsideClick from '@/lib/hooks/useOutsideClick';
+
 import Button from './Button';
 import EditQuantity from './EditQuantity';
 import Input from './Input';
@@ -14,12 +17,25 @@ export default function ShoppingProductRow({
   product,
   pieces,
 }: ShoppingProductRowProps) {
-  const [isEditable, setIsEditable] = useState(false);
+  const [isEditable, setIsEditable] = useState(true);
   const [isCheckbox, setIsCheckbox] = useState(true);
 
-  const handleClickQuantityButton = () => {
-    setIsEditable(!isEditable);
+  const handleClickQuantityButton = (e: any) => {
+    e.stopPropagation();
+    console.log(isEditable, 'set to true');
+    // if (!isEditable) {
+    setIsEditable(true);
+    // }
   };
+  const setFalseEditable = () => {
+    console.log(isEditable, 'set to false');
+
+    // if (isEditable) {
+    console.log('entro');
+    setIsEditable(false);
+    // }
+  };
+  const ref = useOutsideClick(setFalseEditable);
 
   return (
     <div className="mb-6 flex items-center">
@@ -32,13 +48,15 @@ export default function ShoppingProductRow({
       <label className="text-sm">{helper.capitalizeString(product.name)}</label>
       {!isEditable ? (
         <Button
-          onClickFunc={handleClickQuantityButton}
+          onClickFunc={(e) => handleClickQuantityButton(e)}
           customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
         >
           {pieces} pcs
         </Button>
       ) : (
-        <EditQuantity item={product}>{pieces} pcs</EditQuantity>
+        <EditQuantity item={product} ref={ref}>
+          {pieces} pcs
+        </EditQuantity>
       )}
     </div>
   );

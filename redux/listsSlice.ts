@@ -83,7 +83,7 @@ export const listsSlice = createSlice({
       const index = state.listToCreate.items.findIndex(
         ({ item }) => item.id === itemId
       );
-      state.listToCreate.items.splice(index);
+      state.listToCreate.items.splice(index, 1);
     },
     toggleCancel: (state) => {
       state.listToCreate.isCancelled = !state.listToCreate.isCancelled;

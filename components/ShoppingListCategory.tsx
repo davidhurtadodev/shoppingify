@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import ShoppingProductRow from './ShoppingProductRow';
+import helper from '@/lib/helper';
 
 interface ShoppingListCategoryProps {
   categoryName: string;
@@ -18,7 +19,7 @@ export default function ShoppingListCategory({
   return (
     <div>
       <h3 className="mb-5 text-sm font-medium text-[#828282]">
-        {categoryName}
+        {helper.capitalizeString(categoryName)}
       </h3>
       {itemsInCategory.map((item) => {
         return (
