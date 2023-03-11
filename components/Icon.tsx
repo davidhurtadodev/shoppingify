@@ -1,10 +1,19 @@
 interface IconProps {
   icon: string;
   customClasses?: string;
+  filled?: boolean;
 }
 
-export default function Icon({ icon, customClasses }: IconProps) {
+export default function Icon({ icon, customClasses, filled }: IconProps) {
   return (
-    <span className={`material-icons-outlined  ${customClasses}`}>{icon}</span>
+    <span
+      className={
+        !filled
+          ? `material-icons-outlined  ${customClasses}`
+          : `material-icons  ${customClasses}`
+      }
+    >
+      {icon}
+    </span>
   );
 }

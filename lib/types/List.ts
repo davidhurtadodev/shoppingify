@@ -5,6 +5,7 @@ export interface List {
   isCancelled: boolean;
   date: string;
   items: { item: ItemFetched; quantity: number }[];
+  state: 'editing' | 'completing' | 'done';
 }
 
 export interface ListFetched extends List {

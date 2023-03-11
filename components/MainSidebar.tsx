@@ -12,6 +12,9 @@ export default function MainSidebar() {
   const sidebarState = useSelector(
     (store: RootState) => store.UI.sidebar.value
   );
+  const listLength = useSelector(
+    (state: RootState) => state.lists.listToCreate.items.length
+  );
   const shoppingCartClickHandler = () => {
     if (sidebarState !== 'shopping-list')
       return dispatch(changeVisibility('shopping-list'));
@@ -28,7 +31,7 @@ export default function MainSidebar() {
         className=" relative mx-auto mb-10 mt-auto flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary-accent"
       >
         <span className=" absolute -top-2 -right-1 flex h-5 w-5 items-center justify-center rounded bg-danger text-xs text-white">
-          1
+          {listLength}
         </span>
         <Icon icon="shopping_cart" customClasses="md-light  z-50 text-white" />
       </div>

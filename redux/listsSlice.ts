@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { List, ListFetched } from '@/lib/types/List';
-// import itemsService from '@/lib/services/itemsService';
+import listsService from '@/lib/services/listsService';
 
 // Type of state
 export interface ListState {
@@ -17,35 +17,32 @@ const initialState: ListState = {
     isCancelled: false,
     date: '',
     items: [],
+    state: 'editing',
   },
 };
 
-// export const fetchItemsAsync = createAsyncThunk(
-//   'items/fetchItems',
-//   async () => {
-//     const items = await itemsService.getAll();
-//     return items;
-//   }
-// );
-// export const deleteItemsAsync = createAsyncThunk(
-//   'items/deleteAsync',
-//   async (id: string) => {
-//     await itemsService.deleteItem(id);
-//     return id;
-//   }
-// );
-// export const createItemAsync = createAsyncThunk(
-//   'items/createAsync',
-//   async (content: Item) => {
-//     const item = await itemsService.create(content);
-//     return item;
-//   }
-// );
+export const createItemAsync = createAsyncThunk(
+  'lists/createAsync',
+  async (content: List) => {
+    const item = await listsService.create(content);
+    return item;
+  }
+);
 
 export const listsSlice = createSlice({
   name: 'lists',
   initialState,
   reducers: {
+    changeListToCreateState: (state, action) => {
+      const { payload } = action;
+      if (
+        payload === 'editing' ||
+        payload === 'completing' ||
+        payload === 'done'
+      ) {
+        state.listToCreate.state = action.payload;
+      }
+    },
     changeName: (state, action) => {
       if (action.payload === '') {
         state.listToCreate.name = 'Enter a name';
@@ -92,45 +89,23 @@ export const listsSlice = createSlice({
       state.listToCreate.name = action.payload;
     },
   },
-  //   extraReducers: (builder) => {
-  //     builder
-  //       .addCase(createItemAsync.fulfilled, (state, action) => {
-  //         state.status = 'idle';
-  //         state.items.push(action.payload);
-  //       })
-  //       .addCase(createItemAsync.rejected, (state, action) => {
-  //         state.status = 'failed';
-  //       })
-  //       .addCase(createItemAsync.pending, (state, action) => {
-  //         state.status = 'loading';
-  //       })
-  //       .addCase(deleteItemsAsync.pending, (state) => {
-  //         state.status = 'loading';
-  //       })
-  //       .addCase(deleteItemsAsync.fulfilled, (state, action) => {
-  //         const idDeleted: string = action.payload;
-  //         const filterDeleted = state.items.filter(
-  //           (item: ItemFetched) => item.id !== idDeleted
-  //         );
-  //         state.items = filterDeleted;
-  //       })
-  //       .addCase(deleteItemsAsync.rejected, (state, action) => {
-  //         state.status = 'failed';
-  //       })
-  //       .addCase(fetchItemsAsync.pending, (state) => {
-  //         state.status = 'loading';
-  //       })
-  //       .addCase(fetchItemsAsync.fulfilled, (state, action) => {
-  //         state.status = 'idle';
-  //         state.items = action.payload;
-  //       })
-  //       .addCase(fetchItemsAsync.rejected, (state, action) => {
-  //         state.status = 'failed';
-  //       });
-  //   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createItemAsync.fulfilled, (state, action) => {
+        state.lists.status = 'idle';
+        state.lists.value.push(action.payload);
+      })
+      .addCase(createItemAsync.rejected, (state, action) => {
+        state.lists.status = 'failed';
+      })
+      .addCase(createItemAsync.pending, (state, action) => {
+        state.lists.status = 'loading';
+      });
+  },
 });
 
 export const {
+  changeListToCreateState,
   changeName,
   addItem,
   addQuantity,

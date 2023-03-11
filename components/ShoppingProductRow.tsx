@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useDetectClickOutside } from 'react-detect-click-outside';
 import useOutsideClick from '@/lib/hooks/useOutsideClick';
-
 import Button from './Button';
 import EditQuantity from './EditQuantity';
 import Input from './Input';
 import helper from '@/lib/helper';
 import { ItemFetched } from '@/lib/types/Items';
+import { useSelector } from 'react-redux';
+import { AppState } from '@/redux/store';
 
 interface ShoppingProductRowProps {
   product: ItemFetched;
@@ -17,8 +17,11 @@ export default function ShoppingProductRow({
   product,
   pieces,
 }: ShoppingProductRowProps) {
+  const listState = useSelector(
+    (state: AppState) => state.lists.listToCreate.state
+  );
   const [isEditable, setIsEditable] = useState(true);
-  const [isCheckbox, setIsCheckbox] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleClickQuantityButton = (e: any) => {
     e.stopPropagation();
@@ -31,33 +34,78 @@ export default function ShoppingProductRow({
     console.log(isEditable, 'set to false');
 
     // if (isEditable) {
-    console.log('entro');
+
     setIsEditable(false);
     // }
   };
   const ref = useOutsideClick(setFalseEditable);
 
-  return (
-    <div className="mb-6 flex items-center">
-      {isCheckbox ? (
+  if (listState === 'completing') {
+    return (
+      <div className="mb-6 flex min-h-[56px] items-center">
         <div>
-          <Input type="checkbox" />
+          <Input
+            onChangeFunc={(e) => {
+              console.log('jola');
+              setIsChecked(!isChecked);
+            }}
+            isChecked={isChecked}
+            type="checkbox"
+          />
         </div>
-      ) : null}
-
-      <label className="text-sm">{helper.capitalizeString(product.name)}</label>
-      {!isEditable ? (
+        <label className={`text-sm ${isChecked ? 'line-through' : null} `}>
+          {helper.capitalizeString(product.name)}
+        </label>
         <Button
-          onClickFunc={(e) => handleClickQuantityButton(e)}
+          onClickFunc={() => null}
           customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
         >
           {pieces} pcs
         </Button>
-      ) : (
-        <EditQuantity item={product} ref={ref}>
-          {pieces} pcs
-        </EditQuantity>
-      )}
-    </div>
-  );
+      </div>
+    );
+  } else if (listState === 'editing') {
+    return (
+      <div className="mb-6 flex min-h-[56px] items-center">
+        <label className="text-sm">
+          {helper.capitalizeString(product.name)}
+        </label>
+        {!isEditable ? (
+          <Button
+            onClickFunc={(e) => handleClickQuantityButton(e)}
+            customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
+          >
+            {pieces} pcs
+          </Button>
+        ) : (
+          <EditQuantity item={product} ref={ref}>
+            {pieces} pcs
+          </EditQuantity>
+        )}
+      </div>
+    );
+  }
+  // return (
+  //   <div className="mb-6 flex min-h-[56px] items-center">
+  //     {isCheckbox ? (
+  //       <div>
+  //         <Input type="checkbox" />
+  //       </div>
+  //     ) : null}
+
+  //     <label className="text-sm">{helper.capitalizeString(product.name)}</label>
+  //     {!isEditable ? (
+  //       <Button
+  //         onClickFunc={(e) => handleClickQuantityButton(e)}
+  //         customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
+  //       >
+  //         {pieces} pcs
+  //       </Button>
+  //     ) : (
+  //       <EditQuantity item={product} ref={ref}>
+  //         {pieces} pcs
+  //       </EditQuantity>
+  //     )}
+  //   </div>
+  // );
 }

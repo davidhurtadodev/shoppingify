@@ -20,6 +20,7 @@ export default function ItemInfo() {
 
   const addToListHandler = () => {
     dispatch(addItem(selectedItem));
+    dispatch(changeVisibility('shopping-list'));
   };
   return (
     <section className="y flex h-full flex-col bg-white px-11 pb-8 pt-6">

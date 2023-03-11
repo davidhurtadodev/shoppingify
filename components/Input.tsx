@@ -3,6 +3,7 @@ import { overrideTailwindClasses } from 'tailwind-override';
 interface InputProps {
   labelText?: string;
   type?: string;
+  isChecked?: boolean;
   customClasses?: string;
   placeholder?: string;
   onChangeFunc: (e: React.FormEvent<HTMLInputElement>) => void;
@@ -16,15 +17,17 @@ export default function Input({
   placeholder,
   onChangeFunc,
   value,
+  isChecked,
 }: InputProps) {
   return (
     <div className={`${type !== 'checkbox' ? 'mb-4' : ''} w-full`}>
-      {labelText ? (
+      {labelText && (
         <label className="mb-1 block text-sm font-normal">{labelText}</label>
-      ) : null}
+      )}
       {type === 'checkbox' ? (
         <input
-          value={value && value}
+          checked={isChecked}
+          onChange={(e) => onChangeFunc(e)}
           type="checkbox"
           className="mr-2 grid h-6 w-6 cursor-pointer appearance-none place-content-center rounded border-2 border-primary-accent text-primary-accent before:h-6 before:w-6 before:scale-0 checked:before:scale-100    checked:before:bg-[url('/assets/icons/done.svg')]"
         />
