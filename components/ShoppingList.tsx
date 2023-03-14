@@ -1,4 +1,5 @@
 import Button from './Button';
+import Image from 'next/image';
 import ShoppingProductRow from './ShoppingProductRow';
 import Icon from './Icon';
 import ShoppingListCategory from './ShoppingListCategory';
@@ -6,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { CategoryFetched } from '@/lib/types/Categories';
 import { changeListToCreateState } from '@/redux/listsSlice';
+import shoppingImage from '@/public/assets/images/shopping.svg';
 
 export default function ShoppingList() {
   const dispatch = useDispatch();
@@ -29,9 +31,23 @@ export default function ShoppingList() {
           <Icon icon="create" filled />
         </div>
       </div>
-      {filteredCategories.map((name) => {
-        return <ShoppingListCategory categoryName={name} key={name} />;
-      })}
+      {/* if there are items */}
+      {listItems &&
+        filteredCategories.map((name) => {
+          return <ShoppingListCategory categoryName={name} key={name} />;
+        })}
+      {/* {if there are not items} */}
+      {listItems.length === 0 && (
+        <div className="relative flex flex-grow flex-col items-center justify-center">
+          <p className="mt-auto text-xl font-bold">No item</p>
+
+          <Image
+            className="mt-auto -mb-2"
+            src={shoppingImage}
+            alt="no item image"
+          />
+        </div>
+      )}
     </>
   );
 }

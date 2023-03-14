@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { List, ListFetched } from '@/lib/types/List';
+import { ListFetched, ListWithState } from '@/lib/types/List';
 import listsService from '@/lib/services/listsService';
+import { RootState } from './store';
 
 // Type of state
 export interface ListState {
   lists: { value: ListFetched[]; status: 'idle' | 'loading' | 'failed' };
-  listToCreate: List;
+  listToCreate: ListWithState;
 }
 
 // Initial state
@@ -21,10 +22,25 @@ const initialState: ListState = {
   },
 };
 
-export const createItemAsync = createAsyncThunk(
+export const createListAsync = createAsyncThunk(
   'lists/createAsync',
-  async (content: List) => {
-    const item = await listsService.create(content);
+  async (arg: string, { getState }) => {
+    const storeState = getState();
+    const typedState: RootState = storeState as RootState;
+    const currentList = typedState.lists.listToCreate;
+
+    const date = new Date().toLocaleDateString();
+
+    console.log({ currentList: currentList });
+
+    const { state, ...listToPost } = currentList;
+    listToPost.date = date;
+    if (arg !== 'Complete') {
+      listToPost.isCancelled = true;
+    }
+    //name date iscancelled items
+
+    const item = await listsService.create(listToPost);
     return item;
   }
 );
@@ -91,14 +107,14 @@ export const listsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createItemAsync.fulfilled, (state, action) => {
+      .addCase(createListAsync.fulfilled, (state, action) => {
         state.lists.status = 'idle';
         state.lists.value.push(action.payload);
       })
-      .addCase(createItemAsync.rejected, (state, action) => {
+      .addCase(createListAsync.rejected, (state, action) => {
         state.lists.status = 'failed';
       })
-      .addCase(createItemAsync.pending, (state, action) => {
+      .addCase(createListAsync.pending, (state, action) => {
         state.lists.status = 'loading';
       });
   },

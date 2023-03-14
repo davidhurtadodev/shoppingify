@@ -2,6 +2,7 @@ import { overrideTailwindClasses } from 'tailwind-override';
 
 interface InputProps {
   labelText?: string;
+  disabled?: boolean;
   type?: string;
   isChecked?: boolean;
   customClasses?: string;
@@ -18,6 +19,7 @@ export default function Input({
   onChangeFunc,
   value,
   isChecked,
+  disabled,
 }: InputProps) {
   return (
     <div className={`${type !== 'checkbox' ? 'mb-4' : ''} w-full`}>
@@ -34,6 +36,7 @@ export default function Input({
       ) : (
         <input
           value={value && value}
+          disabled={disabled && disabled}
           type={!type ? 'text' : type}
           className={overrideTailwindClasses(
             `w-full rounded-xl border-2 border-unselected px-4 py-5 text-sm font-medium placeholder:text-unselected focus:border-primary-accent focus-visible:border-primary-accent focus-visible:outline-primary-accent ${customClasses}`
