@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Icon from './Icon';
+import Tooltip from './Tooltip';
 
 interface MenuTabInterface {
   children: React.ReactNode;
@@ -13,7 +15,7 @@ export default function MenuTab({ children }: MenuTabInterface) {
 
   return (
     <div
-      className={`relative mb-16  flex cursor-pointer items-center justify-center ${activeStyles}`}
+      className={`group relative  mb-16 flex cursor-pointer items-center justify-center ${activeStyles}`}
     >
       {children}
     </div>
