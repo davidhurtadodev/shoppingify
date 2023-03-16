@@ -44,7 +44,7 @@ export default function ShoppingSidebarFooter() {
           <Input
             disabled={listItems.length < 1 && true}
             placeholder="Enter a name"
-            customClasses="focus-visible:outline-none border-0  grow p-5 focus:outline-0x"
+            customClasses="focus-visible:outline-0 border-0  grow p-5 focus:outline-0x"
             onChangeFunc={handleListToCreateNameChange}
           />
           <Button

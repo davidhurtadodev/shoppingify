@@ -3,7 +3,7 @@ import { ItemFetched } from './Items';
 export interface List {
   name: string;
   isCancelled: boolean;
-  date: string;
+  date: Date | null;
   items: { item: ItemFetched; quantity: number }[];
 }
 export interface ListWithState extends List {

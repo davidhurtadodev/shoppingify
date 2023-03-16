@@ -16,11 +16,18 @@ const initialState: ListState = {
   listToCreate: {
     name: 'Default list',
     isCancelled: false,
-    date: '',
+    date: null,
     items: [],
     state: 'editing',
   },
 };
+export const fetchListsAsync = createAsyncThunk(
+  'categories/fetchLists',
+  async () => {
+    const lists = await listsService.getAll();
+    return lists;
+  }
+);
 
 export const createListAsync = createAsyncThunk(
   'lists/createAsync',
@@ -29,7 +36,7 @@ export const createListAsync = createAsyncThunk(
     const typedState: RootState = storeState as RootState;
     const currentList = typedState.lists.listToCreate;
 
-    const date = new Date().toLocaleDateString();
+    const date = new Date();
 
     console.log({ currentList: currentList });
 
@@ -115,6 +122,16 @@ export const listsSlice = createSlice({
         state.lists.status = 'failed';
       })
       .addCase(createListAsync.pending, (state, action) => {
+        state.lists.status = 'loading';
+      })
+      .addCase(fetchListsAsync.fulfilled, (state, action) => {
+        state.lists.status = 'idle';
+        state.lists.value = action.payload;
+      })
+      .addCase(fetchListsAsync.rejected, (state, action) => {
+        state.lists.status = 'failed';
+      })
+      .addCase(fetchListsAsync.pending, (state, action) => {
         state.lists.status = 'loading';
       });
   },

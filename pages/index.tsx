@@ -6,9 +6,5 @@ import MainItems from '@/components/MainItems';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 export default function Home() {
-  return (
-    <Layout>
-      <MainItems />
-    </Layout>
-  );
+  return <MainItems />;
 }
