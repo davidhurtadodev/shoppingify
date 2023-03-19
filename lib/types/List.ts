@@ -3,7 +3,7 @@ import { ItemFetched } from './Items';
 export interface List {
   name: string;
   isCancelled: boolean;
-  date: Date | null;
+  date: any;
   items: { item: ItemFetched; quantity: number }[];
 }
 export interface ListWithState extends List {
@@ -12,4 +12,10 @@ export interface ListWithState extends List {
 
 export interface ListFetched extends List {
   id: string;
+}
+
+export interface StructuredLists {
+  [key: string]: {
+    [key: string]: ListFetched[];
+  };
 }

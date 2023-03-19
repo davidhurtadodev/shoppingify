@@ -16,7 +16,7 @@ const initialState: ListState = {
   listToCreate: {
     name: 'Default list',
     isCancelled: false,
-    date: null,
+    date: '',
     items: [],
     state: 'editing',
   },
@@ -38,8 +38,6 @@ export const createListAsync = createAsyncThunk(
 
     const date = new Date();
 
-    console.log({ currentList: currentList });
-
     const { state, ...listToPost } = currentList;
     listToPost.date = date;
     if (arg !== 'Complete') {
@@ -47,8 +45,11 @@ export const createListAsync = createAsyncThunk(
     }
     //name date iscancelled items
 
-    const item = await listsService.create(listToPost);
-    return item;
+    const list = await listsService.create(listToPost);
+    return {
+      ...list,
+      date: new Date(list.date),
+    };
   }
 );
 
@@ -56,6 +57,9 @@ export const listsSlice = createSlice({
   name: 'lists',
   initialState,
   reducers: {
+    cleanListToCreate: (state) => {
+      state.listToCreate = initialState.listToCreate;
+    },
     changeListToCreateState: (state, action) => {
       const { payload } = action;
       if (
@@ -126,7 +130,13 @@ export const listsSlice = createSlice({
       })
       .addCase(fetchListsAsync.fulfilled, (state, action) => {
         state.lists.status = 'idle';
-        state.lists.value = action.payload;
+        const formatedDateLists = action.payload.map((list: ListFetched) => {
+          return {
+            ...list,
+            date: new Date(list.date),
+          };
+        });
+        state.lists.value = formatedDateLists;
       })
       .addCase(fetchListsAsync.rejected, (state, action) => {
         state.lists.status = 'failed';
@@ -146,5 +156,6 @@ export const {
   toggleCancel,
   restQuantity,
   deleteItemInList,
+  cleanListToCreate,
 } = listsSlice.actions;
 export default listsSlice.reducer;

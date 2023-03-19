@@ -6,6 +6,7 @@ import {
   changeName,
   changeListToCreateState,
   createListAsync,
+  cleanListToCreate,
 } from '@/redux/listsSlice';
 
 export default function ShoppingSidebarFooter() {
@@ -22,13 +23,16 @@ export default function ShoppingSidebarFooter() {
     dispatch(changeName(e.currentTarget.value));
   };
   const handleToggleListState = () => {
-    if (listToCreateState === 'editing')
+    if (listToCreateState === 'editing') {
       return dispatch(changeListToCreateState('completing'));
+    }
+
     return dispatch(changeListToCreateState('editing'));
   };
   const handleListCreation = async (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
     await dispatch(createListAsync(target.innerText));
+    dispatch(cleanListToCreate());
   };
 
   if (listToCreateState === 'editing') {
