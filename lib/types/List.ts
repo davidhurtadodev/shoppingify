@@ -19,3 +19,5 @@ export interface StructuredLists {
     [key: string]: ListFetched[];
   };
 }
+
+export type StructuredByYear = [string, Record<string, ListFetched[]>];

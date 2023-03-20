@@ -61,17 +61,15 @@ function formatDate(input: Date) {
   return `${weekDay} ${date}.${month}.${year}`;
 }
 
-function sortLists(lists: ListFetched[]) {
-  console.log(lists);
+function sortLists(lists: ListFetched[]): ListFetched[] {
   const copiedLists = [...lists];
   return copiedLists.sort((a: ListFetched, b: ListFetched) => {
     const dateA = a.date;
     const dateB = b.date;
-    console.log(dateA.getTime() - dateB.getTime());
     return Math.abs(dateA.getTime() - dateB.getTime());
   });
 }
-function structureLists(sortedList: ListFetched[]) {
+function structureLists(sortedList: ListFetched[]): StructuredLists {
   let structuredLists: StructuredLists = {};
   sortedList.forEach((list, index) => {
     const year: string = list.date.getFullYear().toString();
