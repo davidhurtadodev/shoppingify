@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeVisibility } from '@/redux/UISlice';
+import { changeSidebarValue, changeSidebarVisible } from '@/redux/UISlice';
 import { RootState } from '@/redux/store';
 
 import Image from 'next/image';
@@ -17,8 +17,8 @@ export default function MainSidebar() {
   );
   const shoppingCartClickHandler = () => {
     if (sidebarState !== 'shopping-list')
-      return dispatch(changeVisibility('shopping-list'));
-    return dispatch(changeVisibility('none'));
+      return dispatch(changeSidebarValue('shopping-list'));
+    return dispatch(changeSidebarVisible(null));
   };
   return (
     <>
@@ -28,7 +28,7 @@ export default function MainSidebar() {
       <AsideNav />
       <div
         onClick={shoppingCartClickHandler}
-        className=" relative mx-auto mb-10 mt-auto flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary-accent"
+        className="relative mx-auto mb-10 mt-auto flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary-accent"
       >
         <span className=" absolute -top-2 -right-1 flex h-5 w-5 items-center justify-center rounded bg-danger text-xs text-white">
           {listLength}

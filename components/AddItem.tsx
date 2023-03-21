@@ -2,12 +2,12 @@ import Image from 'next/image';
 import Button from './Button';
 import bottle from '../public/assets/images/bottle.svg';
 import { useDispatch } from 'react-redux';
-import { changeVisibility } from '@/redux/UISlice';
+import { changeSidebarValue } from '@/redux/UISlice';
 
 export default function AddItem() {
   const dispatch = useDispatch();
   const addItemBtnHandler = () => {
-    dispatch(changeVisibility('add-item-form'));
+    dispatch(changeSidebarValue('add-item-form'));
   };
 
   return (

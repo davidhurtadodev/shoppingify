@@ -1,5 +1,6 @@
 interface ButtonInterface {
   text?: string;
+  disabled?: boolean;
   customClasses?: string;
   customIconClasses?: string;
   buttonType?: any;
@@ -13,12 +14,14 @@ export default function Button({
   customClasses,
   children,
   onClickFunc,
+  disabled,
 }: ButtonInterface) {
   return (
     <button
       type={!buttonType ? 'button' : buttonType}
       className={customClasses}
       onClick={onClickFunc ? (e) => onClickFunc(e) : undefined}
+      disabled={disabled && disabled}
     >
       {children}
     </button>

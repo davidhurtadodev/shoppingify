@@ -9,22 +9,12 @@ interface ListStructuredState {
   byYearListArray: StructuredByYear[];
 }
 
-export function useListsStructured(): ListStructuredState {
-  const dispatch = useAppDispatch();
-  const fetchedLists = useAppSelector(
-    (state: RootState) => state.lists.lists.value
-  );
+export function useListsStructured(
+  fetchedLists: ListFetched[]
+): ListStructuredState {
   const [byYearListArray, setByYearListArray] = useState<StructuredByYear[]>(
     []
   );
-
-  useEffect(() => {
-    const fetchLists = async () => {
-      await dispatch(fetchListsAsync());
-    };
-
-    fetchLists();
-  }, [dispatch]);
 
   useEffect(() => {
     if (fetchedLists.length > 0) {

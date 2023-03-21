@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import Icon from './Icon';
 import Button from './Button';
 import helper from '@/lib/helper';
-import { changeVisibility, changeSelectedItem } from '@/redux/UISlice';
+import { changeSidebarValue, changeSelectedItem } from '@/redux/UISlice';
 import { ItemFetched } from '@/lib/types/Items';
 
 interface CategorySectionProps {
@@ -17,7 +17,7 @@ export default function CategorySection({
   const dispatch = useDispatch();
   const itemInfoBtnHandler = (id: string) => {
     console.log(id);
-    dispatch(changeVisibility('item-info'));
+    dispatch(changeSidebarValue('item-info'));
     dispatch(changeSelectedItem(id));
   };
   return (

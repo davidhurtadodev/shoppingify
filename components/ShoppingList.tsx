@@ -1,12 +1,10 @@
-import Button from './Button';
 import Image from 'next/image';
-import ShoppingProductRow from './ShoppingProductRow';
+
 import Icon from './Icon';
 import ShoppingListCategory from './ShoppingListCategory';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { CategoryFetched } from '@/lib/types/Categories';
-import { changeListToCreateState } from '@/redux/listsSlice';
+
 import shoppingImage from '@/public/assets/images/shopping.svg';
 
 export default function ShoppingList() {

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export interface UIState {
   sidebar: {
     value: string;
+    isVisible: boolean;
   };
   selectedItem: {
     id: string | null;
@@ -24,6 +25,7 @@ export interface UIState {
 const initialState: UIState = {
   sidebar: {
     value: 'shopping-list',
+    isVisible: true,
   },
   selectedItem: {
     id: null,
@@ -43,14 +45,18 @@ export const UISlice = createSlice({
   name: 'UI',
   initialState: initialState,
   reducers: {
-    changeVisibility: (state, action) => {
+    changeSidebarValue: (state, action) => {
       state.sidebar.value = action.payload;
+    },
+    changeSidebarVisible: (state, action) => {
+      state.sidebar.isVisible = !state.sidebar.isVisible;
     },
     changeSelectedItem: (state, action) => {
       state.selectedItem.id = action.payload;
     },
   },
 });
-export const { changeVisibility, changeSelectedItem } = UISlice.actions;
+export const { changeSidebarValue, changeSelectedItem, changeSidebarVisible } =
+  UISlice.actions;
 
 export default UISlice.reducer;

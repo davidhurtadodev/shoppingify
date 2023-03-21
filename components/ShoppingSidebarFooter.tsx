@@ -52,6 +52,7 @@ export default function ShoppingSidebarFooter() {
             onChangeFunc={handleListToCreateNameChange}
           />
           <Button
+            disabled={listItems.length < 1 && true}
             onClickFunc={(e) => handleToggleListState()}
             customClasses={`text-white text-base font-bold bg-primary-accent border-2 border-primary-accent px-6 ${
               listItems.length === 0

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Button from './Button';
 import Icon from './Icon';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { CategoryFetched } from '@/lib/types/Categories';
+
 import { fetchCategoriesAsync } from '@/redux/categoriesSlice';
 import { fetchItemsAsync } from '@/redux/itemsSlice';
 import CategorySection from './CategorySection';

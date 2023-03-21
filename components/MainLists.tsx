@@ -1,8 +1,21 @@
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { fetchListsAsync } from '@/redux/listsSlice';
+import { RootState } from '@/redux/store';
 import MonthListContainer from './MonthListContainer';
 import { useListsStructured } from '@/lib/hooks/useListsStructured';
 
 export default function MainLists() {
-  const { byYearListArray } = useListsStructured();
+  const dispatch = useAppDispatch();
+  const fetchedLists = useAppSelector(
+    (state: RootState) => state.lists.lists.value
+  );
+
+  useEffect(() => {
+    dispatch(fetchListsAsync());
+  }, [dispatch]);
+
+  const { byYearListArray } = useListsStructured(fetchedLists);
 
   // interface SortedListObject {
   //   [year: number]: {

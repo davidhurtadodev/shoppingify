@@ -7,7 +7,7 @@ import Textarea from './Textarea';
 import { useAppDispatch } from '@/redux/hooks';
 import { useAppSelector } from '@/redux/hooks';
 import { RootState } from '@/redux/store';
-import { changeVisibility } from '@/redux/UISlice';
+import { changeSidebarValue } from '@/redux/UISlice';
 import { createItemAsync } from '@/redux/itemsSlice';
 import helper from '@/lib/helper';
 import selectStyles from '@/lib/misc/selectStyles';
@@ -30,7 +30,7 @@ export default function AddItemForm() {
   const [category, setCategory] = useState(options[0].value);
 
   const cancelAddItemBtnHandler = () => {
-    dispatch(changeVisibility('shopping-list'));
+    dispatch(changeSidebarValue('shopping-list'));
   };
 
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ export default function AddItemForm() {
   const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {
     setImage(e.currentTarget.value);
   };
-  const handleCategoryChange = (selectedOption) => {
+  const handleCategoryChange = (selectedOption: any) => {
     setCategory(selectedOption.value);
   };
 

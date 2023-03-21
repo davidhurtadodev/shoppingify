@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeVisibility } from '@/redux/UISlice';
+import { changeSidebarValue } from '@/redux/UISlice';
 import Button from './Button';
 import Icon from './Icon';
 import helper from '@/lib/helper';
@@ -15,12 +15,12 @@ export default function ItemInfo() {
 
   const selectedItem = items.find((item) => item.id === selectedItemId);
   const backItemInfoBtnHandler = () => {
-    dispatch(changeVisibility('shopping-list'));
+    dispatch(changeSidebarValue('shopping-list'));
   };
 
   const addToListHandler = () => {
     dispatch(addItem(selectedItem));
-    dispatch(changeVisibility('shopping-list'));
+    dispatch(changeSidebarValue('shopping-list'));
   };
   return (
     <section className="y flex h-full flex-col bg-white px-11 pb-8 pt-6">
