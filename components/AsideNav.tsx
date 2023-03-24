@@ -7,19 +7,19 @@ export default function AsideNav() {
   return (
     <nav>
       <Link href="/">
-        <MenuTab>
+        <MenuTab hrefReference="/">
           <Icon icon="list" />
           <Tooltip text="items" />
         </MenuTab>
       </Link>
       <Link href="/history">
-        <MenuTab>
+        <MenuTab hrefReference="/history">
           <Icon icon="replay" />
           <Tooltip text="history" />
         </MenuTab>
       </Link>
-      <Link href="/statistics">
-        <MenuTab>
+      <Link href="#">
+        <MenuTab hrefReference="/statistics">
           <Icon icon="assessment" />
           <Tooltip text="statistics" />
         </MenuTab>

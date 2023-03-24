@@ -1,11 +1,17 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-interface MenuTabInterface {
+interface MenuTabProps {
   children: React.ReactNode;
+  hrefReference: string;
 }
 
-export default function MenuTab({ children }: MenuTabInterface) {
-  const [isActive, setIsActive] = useState(false);
+export default function MenuTab({ children, hrefReference }: MenuTabProps) {
+  const router = useRouter();
+  console.log(router);
+
+  let isActive = false;
+  if (router.route === hrefReference) isActive = true;
 
   const activeStyles = isActive
     ? 'before:absolute before:left-0 before:block before:h-full before:w-1.5 before:rounded-r before:bg-primary-accent'

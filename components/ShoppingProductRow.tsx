@@ -25,19 +25,13 @@ export default function ShoppingProductRow({
 
   const handleClickQuantityButton = (e: any) => {
     e.stopPropagation();
-    console.log(isEditable, 'set to true');
-    // if (!isEditable) {
     setIsEditable(true);
-    // }
   };
   const setFalseEditable = () => {
     console.log(isEditable, 'set to false');
-
-    // if (isEditable) {
-
     setIsEditable(false);
-    // }
   };
+
   const ref = useOutsideClick(setFalseEditable);
 
   if (listState === 'completing') {
@@ -46,7 +40,6 @@ export default function ShoppingProductRow({
         <div>
           <Input
             onChangeFunc={(e) => {
-              console.log('jola');
               setIsChecked(!isChecked);
             }}
             isChecked={isChecked}
