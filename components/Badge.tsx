@@ -4,16 +4,13 @@ interface BadgeProps {
 }
 
 export default function Badge({ isCancelled, customClasses }: BadgeProps) {
-  if (!isCancelled) {
-    return (
-      <div
-        className={`${customClasses} w-20 rounded-lg border border-solid border-accept py-1 text-xs font-medium text-accept`}
-      >
-        completed
-      </div>
-    );
-  }
-  return (
+  return !isCancelled ? (
+    <div
+      className={`${customClasses} w-20 rounded-lg border border-solid border-accept py-1 text-xs font-medium text-accept`}
+    >
+      completed
+    </div>
+  ) : (
     <div
       className={`${customClasses} w-20 rounded-lg border border-solid  border-danger py-1 text-xs font-medium text-danger`}
     >

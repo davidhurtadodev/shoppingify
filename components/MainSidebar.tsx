@@ -18,7 +18,7 @@ export default function MainSidebar() {
   const shoppingCartClickHandler = () => {
     if (sidebarState !== 'shopping-list')
       return dispatch(changeSidebarValue('shopping-list'));
-    return dispatch(changeSidebarVisible(null));
+    return dispatch(changeSidebarVisible());
   };
   return (
     <>

@@ -1,4 +1,3 @@
-import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useState } from 'react';
 import Input from './Input';

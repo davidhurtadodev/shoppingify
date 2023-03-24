@@ -1,14 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
-import Image from 'next/image';
-import Button from './Button';
-import Icon from './Icon';
-import Input from './Input';
 import AddItem from './AddItem';
 import ShoppingList from './ShoppingList';
-import { changeName, changeListToCreateState } from '@/redux/listsSlice';
-import { AppDispatch, RootState } from '@/redux/store';
-import { useAppSelector } from '@/redux/hooks';
-import { createListAsync } from '@/redux/listsSlice';
 import ShoppingSidebarFooter from './ShoppingSidebarFooter';
 
 export default function ShoppingSidebar() {

@@ -1,8 +1,8 @@
 import Button from './Button';
 import Icon from './Icon';
 import { ItemFetched } from '@/lib/types/Items';
-import { useSelector, useDispatch } from 'react-redux';
-import { useDetectClickOutside } from 'react-detect-click-outside';
+import { useDispatch } from 'react-redux';
+
 import {
   addQuantity,
   restQuantity,
@@ -13,7 +13,6 @@ import { forwardRef } from 'react';
 interface EditQuantityProps {
   children: React.ReactNode;
   item: ItemFetched;
-  // handleClickQuantityButton: any;
 }
 export type Ref = HTMLDivElement;
 

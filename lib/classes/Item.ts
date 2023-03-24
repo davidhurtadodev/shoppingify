@@ -1,6 +1,6 @@
-import { Item } from '../types/Items';
+import { ItemToCreate } from '../types/Items';
 
-class ItemClass implements Item {
+class ItemClass implements ItemToCreate {
   name: string;
   note: string;
   imageUrl: string;

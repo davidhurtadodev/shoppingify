@@ -4,52 +4,34 @@ const capitalizeString = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
 
 function formatWeekDay(dayNumber: number) {
-  switch (dayNumber) {
-    case 0:
-      return 'Sun';
-    case 1:
-      return 'Mon';
-    case 2:
-      return 'Tue';
-    case 3:
-      return 'Wed';
-    case 4:
-      return 'Thu';
-    case 5:
-      return 'Fri';
-    case 6:
-      return 'Sat';
-  }
+  const days = {
+    0: 'Sun',
+    1: 'Mon',
+    2: 'Tue',
+    3: 'Wed',
+    4: 'Thu',
+    5: 'Fri',
+    6: 'Sat',
+  };
+
+  return days[dayNumber as keyof typeof days];
 }
 function formatMonth(monthNumber: number) {
-  switch (monthNumber) {
-    case 0:
-      return 'January';
-    case 1:
-      return 'February';
-    case 2:
-      return 'March';
-    case 3:
-      return 'April';
-    case 4:
-      return 'May';
-    case 5:
-      return 'June';
-    case 6:
-      return 'July';
-    case 7:
-      return 'August';
-    case 6:
-      return 'September';
-    case 6:
-      return 'October';
-    case 6:
-      return 'November';
-    case 6:
-      return 'December';
-    default:
-      return '';
-  }
+  const months = {
+    0: 'January',
+    1: 'February',
+    2: 'March',
+    3: 'April',
+    4: 'May',
+    5: 'June',
+    6: 'July',
+    7: 'August',
+    8: 'September',
+    9: 'October',
+    10: 'November',
+    11: 'December',
+  };
+  return months[monthNumber as keyof typeof months];
 }
 function formatDate(input: Date) {
   const date = input.getDate();

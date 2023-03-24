@@ -12,16 +12,10 @@ export default function MainLists() {
   );
 
   useEffect(() => {
-    dispatch(fetchListsAsync());
+    // dispatch(fetchListsAsync());
   }, [dispatch]);
 
   const { byYearListArray } = useListsStructured(fetchedLists);
-
-  // interface SortedListObject {
-  //   [year: number]: {
-  //     [month: string]: ListFetched[];
-  //   };
-  // }
 
   return (
     <div className="xl:px-20">

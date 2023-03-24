@@ -4,12 +4,23 @@ import AddItemForm from './AddItemForm';
 import ItemInfo from './ItemInfo';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { useEffect } from 'react';
+import { fetchCategoriesAsync } from '@/redux/categoriesSlice';
+import { fetchItemsAsync } from '@/redux/itemsSlice';
+import { fetchListsAsync } from '@/redux/listsSlice';
+import { useAppDispatch } from '@/redux/hooks';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+    dispatch(fetchItemsAsync());
+    dispatch(fetchListsAsync());
+  });
   const sidebarSection = useSelector(
     (state: RootState) => state.UI.sidebar.value
   );

@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import Icon from './Icon';
-import Tooltip from './Tooltip';
 
 interface MenuTabInterface {
   children: React.ReactNode;

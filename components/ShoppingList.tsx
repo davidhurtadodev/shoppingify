@@ -1,14 +1,12 @@
 import Image from 'next/image';
-
 import Icon from './Icon';
 import ShoppingListCategory from './ShoppingListCategory';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 
 import shoppingImage from '@/public/assets/images/shopping.svg';
 
 export default function ShoppingList() {
-  const dispatch = useDispatch();
   const listName = useSelector(
     (state: RootState) => state.lists.listToCreate.name
   );

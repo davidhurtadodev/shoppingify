@@ -85,27 +85,5 @@ export default function ShoppingProductRow({
       </div>
     );
   }
-  // return (
-  //   <div className="mb-6 flex min-h-[56px] items-center">
-  //     {isCheckbox ? (
-  //       <div>
-  //         <Input type="checkbox" />
-  //       </div>
-  //     ) : null}
-
-  //     <label className="text-sm">{helper.capitalizeString(product.name)}</label>
-  //     {!isEditable ? (
-  //       <Button
-  //         onClickFunc={(e) => handleClickQuantityButton(e)}
-  //         customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
-  //       >
-  //         {pieces} pcs
-  //       </Button>
-  //     ) : (
-  //       <EditQuantity item={product} ref={ref}>
-  //         {pieces} pcs
-  //       </EditQuantity>
-  //     )}
-  //   </div>
-  // );
+  return null;
 }
