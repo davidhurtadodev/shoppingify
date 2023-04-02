@@ -4,26 +4,33 @@ import Icon from './Icon';
 import Tooltip from './Tooltip';
 
 export default function AsideNav() {
+  const routesArray = [
+    {
+      routeRef: '/',
+      icon: 'list',
+      tooltip: 'items',
+    },
+    {
+      routeRef: '/history',
+      icon: 'replay',
+      tooltip: 'history',
+    },
+    {
+      routeRef: '#',
+      icon: 'assessment',
+      tooltip: 'statistics',
+    },
+  ];
   return (
     <nav>
-      <Link href="/">
-        <MenuTab hrefReference="/">
-          <Icon icon="list" />
-          <Tooltip text="items" />
-        </MenuTab>
-      </Link>
-      <Link href="/history">
-        <MenuTab hrefReference="/history">
-          <Icon icon="replay" />
-          <Tooltip text="history" />
-        </MenuTab>
-      </Link>
-      <Link href="#">
-        <MenuTab hrefReference="/statistics">
-          <Icon icon="assessment" />
-          <Tooltip text="statistics" />
-        </MenuTab>
-      </Link>
+      {routesArray.map((route) => (
+        <Link key={route.routeRef} href={route.routeRef}>
+          <MenuTab hrefReference={route.routeRef}>
+            <Icon icon={route.icon} />
+            <Tooltip text={route.tooltip} />
+          </MenuTab>
+        </Link>
+      ))}
     </nav>
   );
 }

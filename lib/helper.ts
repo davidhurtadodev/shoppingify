@@ -33,30 +33,33 @@ function formatMonth(monthNumber: number) {
   };
   return months[monthNumber as keyof typeof months];
 }
-function formatDate(input: Date) {
-  const date = input.getDate();
-  const month = input.getMonth() + 1;
-  const year = input.getFullYear();
+function formatDate(dateString: string) {
+  const arg = new Date(dateString);
+  const date = arg.getDate();
+  const month = arg.getMonth() + 1;
+  const year = arg.getFullYear();
 
-  const weekDay = formatWeekDay(input.getDay());
+  const weekDay = formatWeekDay(arg.getDay());
 
   return `${weekDay} ${date}.${month}.${year}`;
 }
 
+//Sort list by date
 function sortLists(lists: ListFetched[]): ListFetched[] {
   const copiedLists = [...lists];
   return copiedLists.sort((a: ListFetched, b: ListFetched) => {
-    const dateA = a.date;
-    const dateB = b.date;
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
     return Math.abs(dateA.getTime() - dateB.getTime());
   });
 }
+// structure list in arrays
 function structureLists(sortedList: ListFetched[]): StructuredLists {
   let structuredLists: StructuredLists = {};
   sortedList.forEach((list, index) => {
-    const year: string = list.date.getFullYear().toString();
-
-    const month: string = formatMonth(list.date.getMonth());
+    const dateObject = new Date(list.date);
+    const year: string = dateObject.getFullYear().toString();
+    const month: string = formatMonth(dateObject.getMonth());
     if (index === 0) {
       structuredLists = {
         [year]: { [month]: [list] },

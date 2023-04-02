@@ -19,7 +19,7 @@ export default function MenuTab({ children, hrefReference }: MenuTabProps) {
 
   return (
     <div
-      className={`group relative  mb-16 flex cursor-pointer items-center justify-center ${activeStyles}`}
+      className={`group relative mb-16  flex h-11 cursor-pointer items-center justify-center ${activeStyles}`}
     >
       {children}
     </div>

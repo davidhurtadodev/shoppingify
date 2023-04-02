@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Item, ItemFetched } from '@/lib/types/Items';
 import itemsService from '@/lib/services/itemsService';
+import { HYDRATE } from 'next-redux-wrapper';
 
 // Type of state
 export interface itemsState {
@@ -43,6 +44,9 @@ export const itemsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(HYDRATE, (state, action: any) => {
+        state = action.payload.items;
+      })
       .addCase(createItemAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.items.push(action.payload);
