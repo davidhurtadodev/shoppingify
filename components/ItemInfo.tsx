@@ -1,17 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { changeSidebarValue } from '@/redux/UISlice';
 import Button from './Button';
 import Icon from './Icon';
 import helper from '@/lib/helper';
 import { RootState } from '@/redux/store';
 import { addItem } from '@/redux/listsSlice';
+import { deleteItemsAsync } from '@/redux/itemsSlice';
 
 export default function ItemInfo() {
-  const dispatch = useDispatch();
-  const selectedItemId = useSelector(
+  const dispatch = useAppDispatch();
+  const selectedItemId = useAppSelector(
     (state: RootState) => state.UI.selectedItem.id
   );
-  const items = useSelector((state: RootState) => state.items.items);
+  const items = useAppSelector((state: RootState) => state.items.items);
 
   const selectedItem = items.find((item) => item.id === selectedItemId);
   const backItemInfoBtnHandler = () => {
@@ -21,6 +22,12 @@ export default function ItemInfo() {
   const addToListHandler = () => {
     dispatch(addItem(selectedItem));
     dispatch(changeSidebarValue('shopping-list'));
+  };
+  const deleteItemBtnHandler = () => {
+    if (selectedItemId) {
+      dispatch(deleteItemsAsync(selectedItemId));
+      dispatch(changeSidebarValue('shopping-list'));
+    }
   };
   return (
     <section className="y flex h-full flex-col bg-white px-11 pb-8 pt-6">
@@ -55,7 +62,10 @@ export default function ItemInfo() {
       ) : null}
 
       <div className=" mb-0 mt-auto flex justify-center">
-        <Button customClasses="font-bold text-base px-6 py-5 bg-transparent border-0">
+        <Button
+          onClickFunc={deleteItemBtnHandler}
+          customClasses="font-bold text-base px-6 py-5 bg-transparent border-0"
+        >
           delete
         </Button>
         <Button
