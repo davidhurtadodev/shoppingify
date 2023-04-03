@@ -22,7 +22,7 @@ export default function MainSidebar() {
   };
   return (
     <>
-      <div className=" mt-0 mb-auto flex cursor-pointer   items-center justify-center">
+      <div className="mt-0 mb-auto flex  cursor-pointer    items-center justify-center">
         <Image src={logo} className="w-10" alt="logo" />
       </div>
       <AsideNav />

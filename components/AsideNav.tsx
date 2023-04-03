@@ -22,7 +22,7 @@ export default function AsideNav() {
     },
   ];
   return (
-    <nav>
+    <nav className="mt-20">
       {routesArray.map((route) => (
         <Link key={route.routeRef} href={route.routeRef}>
           <MenuTab hrefReference={route.routeRef}>
