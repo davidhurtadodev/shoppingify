@@ -14,9 +14,17 @@ export interface UIState {
   mainSection: {
     value: boolean;
   };
+  modal: {
+    isVisible: boolean;
+    type: string;
+  };
 }
 
 const initialState: UIState = {
+  modal: {
+    isVisible: false,
+    type: '',
+  },
   sidebar: {
     value: 'shopping-list',
     isVisible: true,
@@ -48,6 +56,18 @@ export const UISlice = createSlice({
     changeSelectedList: (state, action) => {
       state.selectedList.id = action.payload;
     },
+    openModal: (state, action) => {
+      state.modal = {
+        isVisible: true,
+        type: action.payload,
+      };
+    },
+    closeModal: (state) => {
+      state.modal = {
+        isVisible: false,
+        type: '',
+      };
+    },
   },
 });
 export const {
@@ -55,6 +75,8 @@ export const {
   changeSelectedItem,
   changeSelectedList,
   changeSidebarVisible,
+  openModal,
+  closeModal,
 } = UISlice.actions;
 
 export default UISlice.reducer;

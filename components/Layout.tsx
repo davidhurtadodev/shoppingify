@@ -2,6 +2,7 @@ import MainSidebar from './MainSidebar';
 import ShoppingSidebar from './ShoppingSidebar';
 import AddItemForm from './AddItemForm';
 import ItemInfo from './ItemInfo';
+import Modal from './Modal';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { useEffect } from 'react';
@@ -29,8 +30,9 @@ export default function Layout({ children }: LayoutProps) {
   );
   return (
     <div>
+      <Modal />
       <div className="relative grid min-h-screen grid-cols-6 grid-rows-1 bg-[#FAFAFE] xl:grid-cols-[100px_3fr_1fr]">
-        <aside className="no-scrollbar col-span-1  row-span-1 flex  h-full h-screen  flex-col justify-center bg-white pt-8">
+        <aside className="no-scrollbar col-span-1  row-span-1 flex  h-screen  flex-col justify-center bg-white pt-8">
           <MainSidebar />
         </aside>
         <main className="col-span-5 col-start-2 row-start-1  row-end-2 bg-[#FAFAFE] px-3 pt-10 xl:col-start-2 xl:col-end-3">

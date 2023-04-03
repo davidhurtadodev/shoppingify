@@ -8,6 +8,8 @@ import {
   createListAsync,
   cleanListToCreate,
 } from '@/redux/listsSlice';
+import { openModal } from '@/redux/UISlice';
+import React from 'react';
 
 export default function ShoppingSidebarFooter() {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,10 +31,13 @@ export default function ShoppingSidebarFooter() {
 
     return dispatch(changeListToCreateState('editing'));
   };
-  const handleListCreation = async (e: React.MouseEvent) => {
+  const handleListCompletedCreation = async (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
     await dispatch(createListAsync(target.innerText));
     dispatch(cleanListToCreate());
+  };
+  const handleListCancel = async (e: React.MouseEvent) => {
+    dispatch(openModal(null));
   };
 
   if (listToCreateState === 'editing') {
@@ -69,13 +74,13 @@ export default function ShoppingSidebarFooter() {
     return (
       <div className=" w-100 mb-0 mt-auto flex flex-grow-0  justify-center bg-white px-5 py-4  xl:py-9">
         <Button
-          onClickFunc={handleListCreation}
+          onClickFunc={handleListCancel}
           customClasses="font-bold text-base px-6 py-5 bg-transparent border-0"
         >
           cancel
         </Button>
         <Button
-          onClickFunc={handleListCreation}
+          onClickFunc={handleListCompletedCreation}
           buttonType="submit"
           customClasses="bg-accept font-bold text-base px-6 py-5 text-white rounded-xl"
         >

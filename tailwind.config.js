@@ -21,6 +21,9 @@ module.exports = {
         'black-light': '#454545',
         gray: '#C1C1C4',
       },
+      backgroundColor: {
+        'custom-overlay-opacity': 'rgba(0,0,0,.1)',
+      },
     },
   },
   plugins: [],
