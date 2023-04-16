@@ -44,7 +44,7 @@ export default function ShoppingSidebarFooter() {
     return (
       <div className=" w-100 mb-0 mt-auto  flex-grow-0 bg-white px-5 py-4  xl:py-9">
         <div
-          className={`flex max-h-[61px] overflow-hidden rounded-xl border-2 ${
+          className={` flex max-h-[61px] overflow-hidden rounded-xl border-2 ${
             listItems.length === 0
               ? 'border-unselected'
               : 'border-primary-accent'
@@ -62,7 +62,7 @@ export default function ShoppingSidebarFooter() {
             customClasses={`text-white text-base font-bold bg-primary-accent border-2 border-primary-accent px-6 ${
               listItems.length === 0
                 ? 'border-unselected bg-unselected'
-                : 'border-primary-accent bg-primary'
+                : 'border-primary-accent bg-primary hover:bg-primary-accent-dark hover:border-primary-accent-dark'
             }`}
           >
             Save
@@ -75,14 +75,14 @@ export default function ShoppingSidebarFooter() {
       <div className=" w-100 mb-0 mt-auto flex flex-grow-0  justify-center bg-white px-5 py-4  xl:py-9">
         <Button
           onClickFunc={handleListCancel}
-          customClasses="font-bold text-base px-6 py-5 bg-transparent border-0"
+          customClasses="w-[105px] mx-2 hover:bg-danger-dark bg-danger  font-bold text-white rounded-xl py-5  border-0"
         >
-          cancel
+          Cancel
         </Button>
         <Button
           onClickFunc={handleListCompletedCreation}
           buttonType="submit"
-          customClasses="bg-accept font-bold text-base px-6 py-5 text-white rounded-xl"
+          customClasses="bg-accept hover:bg-accept-dark w-[105px] mx-2 font-bold text-base  py-5 text-white rounded-xl"
         >
           Complete
         </Button>

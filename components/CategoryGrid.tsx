@@ -31,12 +31,12 @@ export default function CategoryGrid() {
                 <div className="h-[70px]" key={item.id}>
                   <Button
                     onClickFunc={() => itemInfoBtnHandler(item.id)}
-                    customClasses="text-left shadow-[0_2px_12px_rgba(0,0,0,0.05)] flex items-center py-3  px-4 w-[140px] rounded-xl "
+                    customClasses="group hover:bg-primary-accent hover:text-white text-left shadow-[0_2px_12px_rgba(0,0,0,0.05)] flex items-center py-3  px-4 w-[140px] rounded-xl "
                   >
                     {helper.capitalizeString(item.name)}
                     <Icon
                       icon="add"
-                      customClasses="block mr-0 ml-auto opacity-20"
+                      customClasses="group-hover:text-white group-hover:opacity-100  block mr-0 ml-auto opacity-20"
                     />
                   </Button>
                 </div>

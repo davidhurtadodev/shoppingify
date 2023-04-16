@@ -5,7 +5,7 @@ interface CategorySectionProps {
   children: React.ReactNode;
 }
 
-export default function CategorySectionTest({
+export default function CategorySection({
   title,
   children,
 }: CategorySectionProps) {

@@ -47,13 +47,13 @@ export default function Modal() {
         <div className=" mb-0 mt-auto flex justify-end">
           <Button
             onClickFunc={handleCloseClick}
-            customClasses="font-bold text-base px-6 py-5 bg-transparent border-0"
+            customClasses="bg-accept hover:bg-accept-dark  w-[95px] mx-2 rounded-xl text-white  font-bold text-base px-6 py-5 bg-transparent border-0"
           >
-            cancel
+            No
           </Button>
           <Button
             onClickFunc={handleListCompletedCreation}
-            customClasses="bg-danger font-bold text-base px-6 py-5 text-white rounded-xl"
+            customClasses=" w-[95px]  font-bold text-base px-6 py-5 text-white rounded-xl hover:bg-danger-dark bg-danger"
           >
             Yes
           </Button>

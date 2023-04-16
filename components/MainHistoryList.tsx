@@ -4,7 +4,7 @@ import { RootState } from '@/redux/store';
 import Button from './Button';
 import Icon from './Icon';
 import HistoryCategoryItems from './HistoryCategoryItems';
-import CategorySectionTest from './CategorySection';
+import CategorySection from './CategorySection';
 import helper from '@/lib/helper';
 
 interface MainHistoryList {
@@ -18,7 +18,12 @@ export default function MainHistoryList({ listId }: MainHistoryList) {
   const categoriesInList = selectedList?.items.map(
     (item) => item.item.category
   );
-  const notDuplicatesCategories = [...new Set(categoriesInList)];
+
+  const notDuplicatesCategories = Array.from(
+    new Set(categoriesInList!.map((category) => category.id))
+  ).map((id) => {
+    return categoriesInList?.find((category) => category.id === id);
+  });
 
   return (
     <div className="xl:px-20">
@@ -42,11 +47,11 @@ export default function MainHistoryList({ listId }: MainHistoryList) {
       </div>
 
       {notDuplicatesCategories.map((category) => (
-        <CategorySectionTest key={category.id} title={category.name}>
-          {selectedList?.items.map(({ item, quantity }) =>
-            item.category.id === category.id ? (
+        <CategorySection key={category.id} title={category.name}>
+          {selectedList?.items.map(({ item, quantity }) => {
+            return item.category.id === category.id ? (
               <div className="h-[70px]" key={item.id}>
-                <Button customClasses=" relative text-left shadow-[0_2px_12px_rgba(0,0,0,0.05)] flex items-center py-3  px-4 w-[182px] rounded-xl ">
+                <Button customClasses="  relative text-left shadow-[0_2px_12px_rgba(0,0,0,0.05)] flex items-center py-3  px-4 w-[182px] rounded-xl ">
                   <div className="w-1/2">
                     {helper.capitalizeString(item.name)}
                   </div>
@@ -55,9 +60,9 @@ export default function MainHistoryList({ listId }: MainHistoryList) {
                   </span>
                 </Button>
               </div>
-            ) : null
-          )}
-        </CategorySectionTest>
+            ) : null;
+          })}
+        </CategorySection>
       ))}
     </div>
   );

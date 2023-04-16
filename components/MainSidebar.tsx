@@ -28,7 +28,7 @@ export default function MainSidebar() {
       <AsideNav />
       <div
         onClick={shoppingCartClickHandler}
-        className="relative mx-auto mb-10 mt-auto flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary-accent"
+        className="relative mx-auto mb-10 mt-auto flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary-accent hover:bg-primary-accent-dark"
       >
         <span className=" absolute -top-2 -right-1 flex h-5 w-5 items-center justify-center rounded bg-danger text-xs text-white">
           {listLength}

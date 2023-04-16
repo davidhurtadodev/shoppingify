@@ -20,7 +20,7 @@ export default function AddItem() {
         <Button
           onClickFunc={addItemBtnHandler}
           buttonType="button"
-          customClasses="shadow-[0_2px_12px_rgba(0,0,0,0.05)]  py-2  px-2 w-[110px] rounded-xl bg-white text-center"
+          customClasses="hover:bg-primary-accent hover:text-white shadow-[0_2px_12px_rgba(0,0,0,0.05)]  py-2  px-2 w-[110px] rounded-xl bg-white text-center"
         >
           Add Item
         </Button>

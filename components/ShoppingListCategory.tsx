@@ -18,7 +18,7 @@ export default function ShoppingListCategory({
   });
   return (
     <div>
-      <h3 className="mb-5 text-sm font-medium text-[#828282]">
+      <h3 className="mb-5 mt-12 text-sm font-medium text-[#828282]">
         {helper.capitalizeString(categoryName)}
       </h3>
       {itemsInCategory.map((item) => {

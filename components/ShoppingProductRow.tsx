@@ -59,14 +59,14 @@ export default function ShoppingProductRow({
     );
   } else if (listState === 'editing') {
     return (
-      <div className="mb-6 flex min-h-[56px] items-center">
+      <div className="mb-5 flex min-h-[56px] items-center">
         <label className="text-sm">
           {helper.capitalizeString(product.name)}
         </label>
         {!isEditable ? (
           <Button
             onClickFunc={(e) => handleClickQuantityButton(e)}
-            customClasses="border-2 border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
+            customClasses="border-2  border-primary-accent rounded-3xl text-primary-accent w-[68px] py-2 font-bold text-xs ml-auto mr-0"
           >
             {pieces} pcs
           </Button>

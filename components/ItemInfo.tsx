@@ -64,15 +64,15 @@ export default function ItemInfo() {
       <div className=" mb-0 mt-auto flex justify-center">
         <Button
           onClickFunc={deleteItemBtnHandler}
-          customClasses="font-bold text-base px-6 py-5 bg-transparent border-0"
+          customClasses="font-bold w-[95px] hover:bg-danger-dark bg-danger mx-2 text-white text-base px-6 py-5 rounded-xl  "
         >
-          delete
+          Delete
         </Button>
         <Button
           onClickFunc={addToListHandler}
-          customClasses="bg-primary-accent font-bold text-base px-6 py-5 text-white rounded-xl"
+          customClasses="hover:bg-primary-accent-dark mx-2  w-[95px] bg-primary-accent font-bold text-base px-6 py-5 text-white rounded-xl"
         >
-          Add to list
+          Add
         </Button>
       </div>
     </section>

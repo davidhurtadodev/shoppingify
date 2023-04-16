@@ -8,7 +8,6 @@ interface MenuTabProps {
 
 export default function MenuTab({ children, hrefReference }: MenuTabProps) {
   const router = useRouter();
-  console.log(router);
 
   let isActive = false;
   if (router.route === hrefReference) isActive = true;

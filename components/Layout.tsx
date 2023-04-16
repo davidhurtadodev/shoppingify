@@ -32,7 +32,7 @@ export default function Layout({ children }: LayoutProps) {
     <div>
       <Modal />
       <div className="relative grid min-h-screen grid-cols-6 grid-rows-1 bg-[#FAFAFE] xl:grid-cols-[100px_3fr_1fr]">
-        <aside className="no-scrollbar col-span-1  row-span-1 flex  h-screen  flex-col justify-center bg-white pt-8">
+        <aside className="no-scrollbar col-span-1  row-span-1 flex  h-full  flex-col justify-center bg-white pt-8">
           <MainSidebar />
         </aside>
         <main className="col-span-5 col-start-2 row-start-1  row-end-2 bg-[#FAFAFE] px-3 pt-10 xl:col-start-2 xl:col-end-3">
@@ -41,7 +41,7 @@ export default function Layout({ children }: LayoutProps) {
         <aside
           className={`${
             !sidebarVisibility ? 'left-full' : 'left-0'
-          }  relative z-50 col-span-5 col-start-2 col-end-7 row-span-1 row-start-1 row-end-2 flex flex-col transition-all delay-75 duration-500 ease-in-out  xl:col-start-3 xl:min-w-[380px]`}
+          }  relative z-50 col-span-5 col-start-2 col-end-7 row-span-1 row-start-1 row-end-2 flex h-full flex-col transition-all delay-75 duration-500 ease-in-out  xl:col-start-3 xl:min-w-[380px]`}
         >
           {sidebarSection === 'shopping-list' ? <ShoppingSidebar /> : null}
           {sidebarSection === 'item-info' ? <ItemInfo /> : null}

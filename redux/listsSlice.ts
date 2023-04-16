@@ -120,6 +120,7 @@ export const listsSlice = createSlice({
     builder
       .addCase(createListAsync.fulfilled, (state, action) => {
         state.lists.status = 'idle';
+
         state.lists.value.push(action.payload);
       })
       .addCase(createListAsync.rejected, (state, action) => {
@@ -130,6 +131,7 @@ export const listsSlice = createSlice({
       })
       .addCase(fetchListsAsync.fulfilled, (state, action) => {
         state.lists.status = 'idle';
+
         const formatedDateLists = action.payload.map((list: ListFetched) => {
           return {
             ...list,

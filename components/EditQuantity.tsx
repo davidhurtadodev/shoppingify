@@ -35,7 +35,7 @@ const EditQuantity = forwardRef<Ref, EditQuantityProps>((props, ref) => {
     >
       <Button
         onClickFunc={handleDeleteButton}
-        customClasses="bg-primary-accent self-stretch rounded-xl mr-3 p-3"
+        customClasses="hover:bg-primary-accent-dark bg-primary-accent self-stretch rounded-xl mr-3 p-3"
       >
         <Icon icon="delete" customClasses="text-white" />
       </Button>

@@ -80,13 +80,13 @@ export default function AddItemForm() {
         <div className="mt-auto mb-0 flex justify-center py-4  xl:py-9">
           <Button
             onClickFunc={cancelAddItemBtnHandler}
-            customClasses="font-bold text-base px-6 py-5 bg-transparent border-0"
+            customClasses="font-bold w-[95px] mx-2 hover:bg-danger-dark bg-danger text-base px-6 py-5 bg-transparent border-0 rounded-xl text-white"
           >
-            cancel
+            Cancel
           </Button>
           <Button
             buttonType="submit"
-            customClasses="bg-primary-accent font-bold text-base px-6 py-5 text-white rounded-xl"
+            customClasses="hover:bg-primary-accent-dark mx-2  w-[95px] bg-primary-accent font-bold text-base px-6 py-5 text-white rounded-xl"
           >
             Save
           </Button>
