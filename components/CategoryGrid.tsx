@@ -4,17 +4,27 @@ import { fetchCategoriesAsync } from '@/redux/categoriesSlice';
 import { fetchItemsAsync } from '@/redux/itemsSlice';
 import { changeSidebarValue, changeSelectedItem } from '@/redux/UISlice';
 
-import CategorySectionTest from './CategorySection';
+import CategorySection from './CategorySection';
 import Icon from './Icon';
 import Button from './Button';
 import { ItemFetched } from '@/lib/types/Items';
 import helper from '@/lib/helper';
 
-export default function CategoryGrid() {
+interface CategoryGridProps {
+  selectedCategory: string;
+}
+
+export default function CategoryGrid({ selectedCategory }: CategoryGridProps) {
   const dispatch = useAppDispatch();
   const fetchedCategories = useAppSelector(
     (state) => state.categories.elements
   );
+  let filteredCategories;
+  if (selectedCategory !== 'all') {
+    filteredCategories = fetchedCategories.filter(
+      (category) => category.name === selectedCategory
+    );
+  } else filteredCategories = fetchedCategories;
 
   const itemInfoBtnHandler = (id: string) => {
     dispatch(changeSidebarValue('item-info'));
@@ -23,10 +33,10 @@ export default function CategoryGrid() {
 
   return (
     <div>
-      {fetchedCategories &&
-        fetchedCategories.map((category) => {
+      {filteredCategories &&
+        filteredCategories.map((category) => {
           return (
-            <CategorySectionTest title={category.name} key={category.id}>
+            <CategorySection title={category.name} key={category.id}>
               {category.items.map((item: ItemFetched) => (
                 <div className="h-[70px]" key={item.id}>
                   <Button
@@ -41,7 +51,7 @@ export default function CategoryGrid() {
                   </Button>
                 </div>
               ))}
-            </CategorySectionTest>
+            </CategorySection>
           );
         })}
     </div>
