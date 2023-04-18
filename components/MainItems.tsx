@@ -28,11 +28,12 @@ export default function MainItems() {
   };
   return (
     <div className="xl:px-20">
-      <h2 className="mb-5 hidden text-[26px] font-medium lg:block">
+      <h2 className="mb-10 hidden text-[26px] font-medium lg:block">
         <span className="text-primary-accent">Shoppingify</span> allows you take
         your shopping list wherever you go
       </h2>
       <div className="mb-10 w-[300px]">
+        <h2 className="mb-5 text-base font-medium">Filter by categories</h2>
         <Select
           onChange={handleCategoryChange}
           options={selectOptions}

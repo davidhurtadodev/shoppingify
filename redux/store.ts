@@ -8,7 +8,7 @@ import itemsReducer from './itemsSlice';
 import categoryReducer from './categoriesSlice';
 import UIReducer from './UISlice';
 import listReducer from './listsSlice';
-import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage/session';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 

@@ -16,7 +16,7 @@ export default function AsideNav() {
       tooltip: 'history',
     },
     {
-      routeRef: '#',
+      routeRef: '/statistics',
       icon: 'assessment',
       tooltip: 'statistics',
     },
