@@ -6,6 +6,22 @@ export default function MainStatistics() {
   const allLists = useAppSelector(
     (state: RootState) => state.lists.lists.value
   );
+  let listMonthItems = allLists.map((list) => {
+    return {
+      month: new Date(list.date).getMonth(),
+      items: list.items.reduce((acc, curr) => acc + curr.quantity, 0),
+    };
+  });
+
+  let totalItemsPerMonth = {};
+  listMonthItems.forEach((list) => {
+    if (!totalItemsPerMonth.hasOwnProperty(list.month)) {
+      totalItemsPerMonth[list.month] = list.items;
+    } else {
+      totalItemsPerMonth[list.month] += list.items;
+    }
+  });
+  console.log({ months: totalItemsPerMonth });
   let categoriesInLists = {
     totalElements: 0,
   };
@@ -34,8 +50,8 @@ export default function MainStatistics() {
     });
   });
 
-  console.log(categoriesInLists);
-  console.log(itemsInList);
+  // console.log(categoriesInLists);
+  // console.log(itemsInList);
   return (
     <div className="xl:px-20">
       <div className="flex w-full flex-col xl:flex-row">
