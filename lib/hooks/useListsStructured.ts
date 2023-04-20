@@ -21,6 +21,7 @@ export function useListsStructured(
       const sortedListsObject = helper.structureLists(
         helper.sortLists(fetchedLists)
       );
+      console.log(sortedListsObject);
       const structuredByYear = Object.entries(sortedListsObject);
 
       setByYearListArray(structuredByYear);

@@ -47,11 +47,15 @@ function formatDate(dateString: string) {
 //Sort list by date
 function sortLists(lists: ListFetched[]): ListFetched[] {
   const copiedLists = [...lists];
-  return copiedLists.sort((a: ListFetched, b: ListFetched) => {
+  console.log({ before: copiedLists });
+  copiedLists.sort((a: ListFetched, b: ListFetched) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
-    return Math.abs(dateA.getTime() - dateB.getTime());
+
+    return dateA.getTime() - dateB.getTime();
   });
+
+  return copiedLists;
 }
 // structure list in arrays
 function structureLists(sortedList: ListFetched[]): StructuredLists {
