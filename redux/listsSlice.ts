@@ -44,7 +44,7 @@ export const createListAsync = createAsyncThunk(
       listToPost.isCancelled = true;
     }
     //name date iscancelled items
-
+    console.log(listToPost);
     const list = await listsService.create(listToPost);
     return {
       ...list,

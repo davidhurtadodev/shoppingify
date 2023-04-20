@@ -12,7 +12,7 @@ export default function RankingElements({
 }: RankingElementsProps) {
   let elementsArray = Object.entries(elements);
   elementsArray.sort((a, b) => b[1] - a[1]);
-  console.log(elementsArray);
+  // console.log(elementsArray);
   return (
     <div
       className={`w-full xl:mr-8 xl:w-1/2 ${
@@ -26,7 +26,7 @@ export default function RankingElements({
         const percentage =
           Math.round(((quantity * 100) / elements.totalElements) * 10) / 10;
         console.log(percentage);
-        const customWidth = `w-[${percentage}%]`;
+
         return (
           <div className="mb-7" key={name}>
             <div className="mb-4 flex">

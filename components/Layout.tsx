@@ -31,11 +31,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div>
       <Modal />
-      <div className="relative grid min-h-screen grid-cols-6 grid-rows-1  bg-[#FAFAFE] xl:grid-cols-[100px_3fr_1fr]">
-        <aside className=" col-span-1  row-span-1 flex  h-full  flex-col justify-center overflow-y-hidden bg-white pt-8">
+      <div className="relative grid h-screen grid-cols-6 grid-rows-1  bg-[#FAFAFE] xl:grid-cols-[100px_3fr_1fr]">
+        <aside className=" col-span-1  row-span-1 flex  h-full  flex-col justify-center  bg-white pt-8">
           <MainSidebar />
         </aside>
-        <main className="col-span-5 col-start-2 row-start-1  row-end-2 bg-[#FAFAFE] px-3 pt-10 xl:col-start-2 xl:col-end-3">
+        <main className="col-span-5 col-start-2 row-start-1 row-end-2  overflow-y-auto bg-[#FAFAFE] px-3 pt-10 xl:col-start-2 xl:col-end-3">
           {children}
         </main>
         <aside
