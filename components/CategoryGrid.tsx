@@ -2,13 +2,18 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { fetchCategoriesAsync } from '@/redux/categoriesSlice';
 import { fetchItemsAsync } from '@/redux/itemsSlice';
-import { changeSidebarValue, changeSelectedItem } from '@/redux/UISlice';
+import {
+  changeSidebarValue,
+  changeSelectedItem,
+  changeSidebarVisible,
+} from '@/redux/UISlice';
 
 import CategorySection from './CategorySection';
 import Icon from './Icon';
 import Button from './Button';
 import { ItemFetched } from '@/lib/types/Items';
 import helper from '@/lib/helper';
+import { RootState } from '@/redux/store';
 
 interface CategoryGridProps {
   selectedCategory: string;
@@ -19,6 +24,9 @@ export default function CategoryGrid({ selectedCategory }: CategoryGridProps) {
   const fetchedCategories = useAppSelector(
     (state) => state.categories.elements
   );
+  const isSidebarVisible = useAppSelector(
+    (state) => state.UI.sidebar.isVisible
+  );
   let filteredCategories;
   if (selectedCategory !== 'all') {
     filteredCategories = fetchedCategories.filter(
@@ -28,6 +36,8 @@ export default function CategoryGrid({ selectedCategory }: CategoryGridProps) {
 
   const itemInfoBtnHandler = (id: string) => {
     dispatch(changeSidebarValue('item-info'));
+    if (!isSidebarVisible) dispatch(changeSidebarVisible());
+
     dispatch(changeSelectedItem(id));
   };
 

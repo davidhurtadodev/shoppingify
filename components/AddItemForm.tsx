@@ -80,7 +80,7 @@ export default function AddItemForm() {
         <div className="mt-auto mb-0 flex justify-center py-4  xl:py-9">
           <Button
             onClickFunc={cancelAddItemBtnHandler}
-            customClasses="font-bold w-[95px] mx-2 hover:bg-danger-dark bg-danger text-base px-6 py-5 bg-transparent border-0 rounded-xl text-white"
+            customClasses="font-bold w-[95px] mx-2 hover:bg-danger-dark bg-danger text-base px-6 py-5  border-0 rounded-xl text-white"
           >
             Cancel
           </Button>
