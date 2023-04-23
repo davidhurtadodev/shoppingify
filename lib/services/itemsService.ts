@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Item, ItemFetched } from '../types/Items';
-const baseUrl = 'http://localhost:3003/api/v1/items';
+// const baseUrl = 'http://localhost:3003/api/v1/items';
+const baseUrl = `https://shoppingify-backend-w77z.onrender.com/api/v1/items`;
 
 const getAll = async () => {
   try {

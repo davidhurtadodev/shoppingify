@@ -15,9 +15,11 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export const siteTitle = 'Shoppingify';
 export default function Layout({ children }: LayoutProps) {
   const dispatch = useAppDispatch();
   useEffect(() => {
+    debugger;
     dispatch(fetchCategoriesAsync());
     dispatch(fetchItemsAsync());
     dispatch(fetchListsAsync());

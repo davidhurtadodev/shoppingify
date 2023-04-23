@@ -11,6 +11,7 @@ import {
 import { useAppSelector } from '@/redux/hooks';
 import { RootState } from '@/redux/store';
 import RankingElements from './RankingElements';
+import helper from '@/lib/helper';
 
 export default function MainStatistics() {
   const allLists = useAppSelector(
@@ -39,7 +40,7 @@ export default function MainStatistics() {
   const dataArray = [];
 
   for (const [month, items] of Object.entries(totalItemsPerMonth)) {
-    dataArray.push({ items: items, month: month });
+    dataArray.push({ items: items, month: helper.formatMonth(Number(month)) });
   }
   console.log(dataArray);
   let categoriesInLists = {

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { List, ListFetched } from '../types/List';
-const baseUrl = 'http://localhost:3003/api/v1/lists';
+// const baseUrl = 'http://localhost:3003/api/v1/lists';
+const baseUrl = `https://shoppingify-backend-w77z.onrender.com/api/v1/lists`;
 
 const getAll = async () => {
   try {
