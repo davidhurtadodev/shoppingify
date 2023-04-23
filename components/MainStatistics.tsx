@@ -12,6 +12,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { RootState } from '@/redux/store';
 import RankingElements from './RankingElements';
 import helper from '@/lib/helper';
+import { ObjectType } from 'typescript';
 
 export default function MainStatistics() {
   const allLists = useAppSelector(
@@ -26,13 +27,15 @@ export default function MainStatistics() {
     };
   });
 
-  let totalItemsPerMonth = {};
+  let totalItemsPerMonth: any = {};
   //Get total items per month
   listMonthItems.forEach((list) => {
     if (!totalItemsPerMonth.hasOwnProperty(list.month)) {
-      totalItemsPerMonth[list.month] = list.items;
+      totalItemsPerMonth[list.month as keyof typeof totalItemsPerMonth] =
+        list.items;
     } else {
-      totalItemsPerMonth[list.month] += list.items;
+      totalItemsPerMonth[list.month as keyof typeof totalItemsPerMonth] +=
+        list.items;
     }
   });
   // console.log(listMonthItems);
@@ -42,11 +45,11 @@ export default function MainStatistics() {
   for (const [month, items] of Object.entries(totalItemsPerMonth)) {
     dataArray.push({ items: items, month: helper.formatMonth(Number(month)) });
   }
-  console.log(dataArray);
-  let categoriesInLists = {
+
+  let categoriesInLists: any = {
     totalElements: 0,
   };
-  let itemsInList = { totalElements: 0 };
+  let itemsInList: any = { totalElements: 0 };
   // Get total items and categories data
   allLists.forEach((list) => {
     const items = list.items;
@@ -71,8 +74,6 @@ export default function MainStatistics() {
     });
   });
 
-  // console.log(categoriesInLists);
-  // console.log(itemsInList);
   return (
     <div className="xl:px-20">
       <div className="mb-16 flex w-full flex-col xl:flex-row">

@@ -16,6 +16,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Head>
+          <title>Shoppingify</title>
+
           {/* Material Icons */}
           <link
             href="https://fonts.googleapis.com/icon?family=Material+Icons"

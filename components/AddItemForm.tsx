@@ -38,9 +38,9 @@ export default function AddItemForm() {
   const handleNoteChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
     setNote(e.currentTarget.value);
   };
-  const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setImage(e.currentTarget.value);
-  };
+  // const handleImageChange = (e: React.FormEvent<HTMLInputElement>) => {
+  //   setImage(e.currentTarget.value);
+  // };
   const handleCategoryChange = (selectedOption: any) => {
     setCategory(selectedOption.value);
   };
@@ -66,11 +66,11 @@ export default function AddItemForm() {
           onChangeFunc={handleNoteChange}
           labelText="Note (optional)"
         />
-        <Input
+        {/* <Input
           labelText="Image (optional)"
           placeholder="Enter a url"
           onChangeFunc={handleImageChange}
-        />
+        /> */}
         <label className="mb-1 block text-sm font-normal">Category</label>
         <CreatableSelect
           options={options}
