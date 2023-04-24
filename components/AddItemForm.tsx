@@ -12,17 +12,23 @@ import helper from '@/lib/helper';
 import selectStyles from '@/lib/misc/selectStyles';
 import ItemClass from '@/lib/classes/Item';
 
+export interface CategoryOption {
+  readonly value: string;
+  readonly label: string;
+}
+
 export default function AddItemForm() {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(
     (state: RootState) => state.categories.elements
   );
-  const options = categories.map((category) => {
+  const options: readonly CategoryOption[] = categories.map((category) => {
     return {
       value: category.name,
       label: helper.capitalizeString(category.name),
     };
   });
+
   const [name, setName] = useState('');
   const [note, setNote] = useState('');
   const [image, setImage] = useState('');
@@ -74,8 +80,8 @@ export default function AddItemForm() {
         <label className="mb-1 block text-sm font-normal">Category</label>
         <CreatableSelect
           options={options}
-          styles={selectStyles}
           onChange={handleCategoryChange}
+          styles={selectStyles}
         />
         <div className="mt-auto mb-0 flex justify-center py-4  xl:py-9">
           <Button

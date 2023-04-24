@@ -2,7 +2,9 @@ import helper from '@/lib/helper';
 interface RankingElementsProps {
   elementType: string;
   position: string;
-  elements: {};
+  elements: {
+    [key: string]: number;
+  };
 }
 
 export default function RankingElements({

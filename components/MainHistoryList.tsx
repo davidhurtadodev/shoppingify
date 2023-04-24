@@ -46,24 +46,26 @@ export default function MainHistoryList({ listId }: MainHistoryList) {
         </span>
       </div>
 
-      {notDuplicatesCategories.map((category) => (
-        <CategorySection key={category.id} title={category.name}>
-          {selectedList?.items.map(({ item, quantity }) => {
-            return item.category.id === category.id ? (
-              <div className="h-[70px]" key={item.id}>
-                <Button customClasses="  relative text-left shadow-[0_2px_12px_rgba(0,0,0,0.05)] flex items-center py-3  px-4 w-[182px] rounded-xl ">
-                  <div className="w-1/2">
-                    {helper.capitalizeString(item.name)}
-                  </div>
-                  <span className=" absolute right-4 top-4 ml-auto mr-0 self-start text-xs font-bold text-primary-accent">
-                    {quantity} pcs
-                  </span>
-                </Button>
-              </div>
-            ) : null;
-          })}
-        </CategorySection>
-      ))}
+      {notDuplicatesCategories.map((category) =>
+        category ? (
+          <CategorySection key={category.id} title={category.name}>
+            {selectedList?.items.map(({ item, quantity }) => {
+              return item.category.id === category.id ? (
+                <div className="h-[70px]" key={item.id}>
+                  <Button customClasses="  relative text-left shadow-[0_2px_12px_rgba(0,0,0,0.05)] flex items-center py-3  px-4 w-[182px] rounded-xl ">
+                    <div className="w-1/2">
+                      {helper.capitalizeString(item.name)}
+                    </div>
+                    <span className=" absolute right-4 top-4 ml-auto mr-0 self-start text-xs font-bold text-primary-accent">
+                      {quantity} pcs
+                    </span>
+                  </Button>
+                </div>
+              ) : null;
+            })}
+          </CategorySection>
+        ) : null
+      )}
     </div>
   );
 }

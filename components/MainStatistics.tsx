@@ -46,14 +46,14 @@ export default function MainStatistics() {
     dataArray.push({ items: items, month: helper.formatMonth(Number(month)) });
   }
 
-  let categoriesInLists: any = {
+  let categoriesInLists: { [key: string]: number } = {
     totalElements: 0,
   };
-  let itemsInList: any = { totalElements: 0 };
+  let itemsInList: { [key: string]: number } = { totalElements: 0 };
   // Get total items and categories data
   allLists.forEach((list) => {
     const items = list.items;
-    items.forEach(({ item, quantity }, index) => {
+    items.forEach(({ item, quantity }) => {
       //Populate items
 
       if (!itemsInList.hasOwnProperty(item.name)) {
@@ -92,7 +92,6 @@ export default function MainStatistics() {
       <ResponsiveContainer width="100%" aspect={2}>
         <LineChart
           width={400}
-          // height={400}
           data={dataArray}
           margin={{ top: 5, right: 5, bottom: 5, left: -30 }}
         >

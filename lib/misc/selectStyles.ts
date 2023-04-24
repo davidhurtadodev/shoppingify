@@ -1,11 +1,14 @@
 import { CSSObjectWithLabel, ControlProps } from 'react-select';
-const selectStyles = {
-  option: (baseStyles: CSSObjectWithLabel, state: ControlProps) => ({
+import { StylesConfig } from 'react-select';
+import { CategoryOption } from '@/components/AddItemForm';
+
+const selectStyles: StylesConfig<CategoryOption, false> = {
+  option: (baseStyles, state) => ({
     ...baseStyles,
     color: state.isSelected ? '#fff' : '#000',
     backgroundColor: state.isSelected ? '#E08800' : '#fff',
   }),
-  control: (baseStyles: CSSObjectWithLabel, state: ControlProps) => {
+  control: (baseStyles, state) => {
     let borderColor: string = '#BDBDBD';
     if (state.isFocused) borderColor = '#F9A109';
 
