@@ -1,6 +1,7 @@
 import axios from 'axios';
 // const baseUrl = 'http://localhost:3003/api/v1/categories';
-const baseUrl = `https://shoppingify-backend-w77z.onrender.com/api/v1/categories`;
+// const baseUrl = `https://shoppingify-backend-w77z.onrender.com/api/v1/categories`;
+const baseUrl = `https://shoppingify.fly.dev/api/v1/categories`;
 
 const getAll = async () => {
   try {
